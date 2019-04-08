@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1c1ac0a73ddb4fe38d34bb58daa544b1" Name="Diagram1">
+        <EntityTypeShape EntityType="Model2.AgeRange" Width="1.5" PointX="5.25" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model2.Drzava" Width="1.5" PointX="0.75" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model2.Event" Width="1.5" PointX="7.5" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model2.EventGallery" Width="1.5" PointX="9.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model2.EventTip" Width="1.5" PointX="5.25" PointY="23.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model2.EventToVisit" Width="1.5" PointX="12.75" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model2.Grad" Width="1.5" PointX="3" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model2.Korisnik" Width="1.5" PointX="5.25" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model2.KorisnikUloga" Width="1.5" PointX="7.5" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model2.Lokacija" Width="1.5" PointX="10.25" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model2.LokacijaTip" Width="1.5" PointX="8" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model2.Organizacija" Width="1.5" PointX="5.25" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model2.Posjetilac" Width="1.5" PointX="7.5" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model2.PosjetilacLokacija" Width="1.5" PointX="9.75" PointY="19.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model2.PosjetilacOrganizacija" Width="1.5" PointX="12.75" PointY="19.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model2.Slika" Width="1.5" PointX="12" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model2.Uloga" Width="1.5" PointX="5.25" PointY="7.125" IsExpanded="true" />
+        <AssociationConnector Association="Model2.FK__Grad__DrzavaID__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="Model2.FK__Event__EventTipI__30F848ED" ManuallyRouted="false" />
+        <AssociationConnector Association="Model2.FK__Event__KreatorID__31EC6D26" ManuallyRouted="false" />
+        <AssociationConnector Association="Model2.FK__Event__LokacijaI__32E0915F" ManuallyRouted="false" />
+        <AssociationConnector Association="Model2.FK__Event__Organizac__33D4B598" ManuallyRouted="false" />
+        <AssociationConnector Association="Model2.FK__EventGall__Event__36B12243" ManuallyRouted="false" />
+        <AssociationConnector Association="Model2.FK__EventToVi__Event__37A5467C" ManuallyRouted="false" />
+        <AssociationConnector Association="Model2.FK__Slika__EventGall__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="Model2.FK__EventToVi__Posje__38996AB5" ManuallyRouted="false" />
+        <AssociationConnector Association="Model2.FK__Korisnik__GradID__3A81B327" ManuallyRouted="false" />
+        <AssociationConnector Association="Model2.FK__Lokacija__GradID__3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="Model2.FK__Organizac__GradI__3F466844" ManuallyRouted="false" />
+        <AssociationConnector Association="Model2.FK__KorisnikU__Koris__3B75D760" ManuallyRouted="false" />
+        <AssociationConnector Association="Model2.FK_PosjetilacKorisnik" ManuallyRouted="false" />
+        <AssociationConnector Association="Model2.FK__KorisnikU__Uloga__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="Model2.FK__Lokacija__Lokaci__3E52440B" ManuallyRouted="false" />
+        <AssociationConnector Association="Model2.FK__Posjetila__Lokac__412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="Model2.FK__Posjetila__Organ__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="Model2.FK__Posjetila__Posje__4222D4EF" ManuallyRouted="false" />
+        <AssociationConnector Association="Model2.FK__Posjetila__Posje__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="Model2.EventAgeRange" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

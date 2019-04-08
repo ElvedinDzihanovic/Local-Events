@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LocalEvents.Lokacije.CommentSectionPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label x:Name="titleLabel"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+
+
+            <ListView x:Name="commentsListView" RowHeight="100">
+                <ListView.Header>
+                    <Grid BackgroundColor="LightGray">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Username" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="0" FontAttributes="Bold" FontSize="Medium"></Label>
+                        <Label Text="Rating" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="1" FontAttributes="Bold" FontSize="Medium"></Label>
+                        <Label Text="Comment" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="2" FontAttributes="Bold" FontSize="Medium"></Label>
+                    </Grid>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <Label x:Name="korisnickoImeLabel" Text="{Binding KorisnickoIme}" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" Grid.Column="0"></Label>
+                                <Label x:Name="ratingLabel" Text="{Binding LocationRating}" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" Grid.Column="1"></Label>
+                                <Label x:Name="commentLabel" Text="{Binding Comment}" VerticalOptions="Center" HorizontalOptions="Center" Grid.Column="2"></Label>
+                            </Grid>
+
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

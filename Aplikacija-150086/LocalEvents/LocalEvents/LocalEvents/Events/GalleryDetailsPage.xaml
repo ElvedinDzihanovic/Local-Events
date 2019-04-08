@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:LocalEvents.Converters"
+             x:Class="LocalEvents.Events.GalleryDetailsPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:ImageConverter x:Key="imgConv"></local:ImageConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <Label x:Name="title" Text="Event Galleries: " FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Center" FontSize="Medium"></Label>
+            <Grid x:Name="grid2" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"></RowDefinition>
+                    <RowDefinition Height="2*"></RowDefinition>
+                    <RowDefinition Height="2*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"></ColumnDefinition>
+                    <ColumnDefinition Width="5*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Label x:Name="nazivLabel" Grid.Column="0" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"></Label>
+                <Label x:Name="naziv" Grid.Column="1" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center"></Label>
+
+                <Label x:Name="opisLabel" Grid.Column="0" Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"></Label>
+                <Label x:Name="opis" Grid.Column="1" Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center"></Label>
+
+                <Label x:Name="datumLabel" Grid.Column="0" Grid.Row="2" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"></Label>
+                <Label x:Name="datum" Grid.Column="1" Grid.Row="2" VerticalOptions="Center" HorizontalOptions="Center"></Label>
+
+            </Grid>
+            <Label x:Name="titleSlike" Text="Gallery Images: " FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Center" FontSize="Medium"></Label>
+
+            <ListView x:Name="slikeListView" RowHeight="100" VerticalOptions="Center" HorizontalOptions="Center">
+                <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                            <Grid x:Name="grid2" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Image x:Name="image" Grid.Column="0"
+                                       Source="{Binding SlikaThumb, Converter={StaticResource imgConv}}" Margin="5" HorizontalOptions="Center" VerticalOptions="Center"></Image>
+                            <Label Text="{Binding Opis}" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Center"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+                </ListView.ItemTemplate>
+        </ListView>
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

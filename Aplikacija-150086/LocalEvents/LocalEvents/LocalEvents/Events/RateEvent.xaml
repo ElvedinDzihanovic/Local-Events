@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LocalEvents.Events.RateEvent">
+    <ContentPage.Content>
+        <Grid HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="10*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition Width="8*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Label x:Name="ratingPickLabel" Grid.Row="0" Grid.Column="0" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Fill"></Label>
+            <Picker x:Name="picker" Grid.Row="0" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></Picker>
+            <Label x:Name="commentInputLabel" Grid.Column="0" Grid.Row="1" FontAttributes="Bold" VerticalOptions="FillAndExpand" HorizontalOptions="Fill"></Label>
+            <Editor x:Name="commentInput" Grid.Column="1" Grid.Row="1" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"></Editor>
+
+            <Button x:Name="submitBtn" Clicked="submitBtn_Clicked" Grid.Column="1" Grid.Row="2" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"></Button>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

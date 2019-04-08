@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:LocalEvents.Converters"
+             x:Class="LocalEvents.Lokacije.DetailsPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:ImageConverter x:Key="imgConv"></local:ImageConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout x:Name="mainStack">
+            <Grid VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3*"></RowDefinition>
+                    <RowDefinition Height="2*"></RowDefinition>
+                    <RowDefinition Height="2*"></RowDefinition>
+                    <RowDefinition Height="2*"></RowDefinition>
+                    <RowDefinition Height="2*"></RowDefinition>
+                    <RowDefinition Height="2*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4*"></ColumnDefinition>
+                    <ColumnDefinition Width="6*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <!---->
+            <Image x:Name="slikaThumb" Grid.Row="0" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Center"></Image>
+            <Label x:Name="NazivLabel" Grid.Row="0" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large"></Label>
+            
+            <!---->
+                <Label x:Name="TipLabel" Grid.Column="0" Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"></Label>
+                <Label x:Name="tip" Grid.Column="1" Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center"></Label>
+
+                <!---->
+            <Label x:Name="AdresaLabel" Grid.Column="0" Grid.Row="2" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"></Label>
+            <Label x:Name="Adresa" Grid.Column="1" Grid.Row="2" VerticalOptions="Center" HorizontalOptions="Center"></Label>
+            
+            <!---->
+                <Label x:Name="OpisLabel" Grid.Column="0" Grid.Row="3" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"></Label>
+                <Label x:Name="opis" Grid.Column="1" Grid.Row="3" VerticalOptions="Center" HorizontalOptions="Center"></Label>
+
+                <!---->
+            <Label x:Name="KapacitetLabel" Grid.Column="0" Grid.Row="4" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"></Label>
+            <Label x:Name="kapacitet" Grid.Column="1" Grid.Row="4" VerticalOptions="Center" HorizontalOptions="Center"></Label>
+
+            <!---->
+                <Label x:Name="optionsLabel" Grid.Column="0" Grid.Row="5" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"></Label>
+                <StackLayout x:Name="buttonsStack" Grid.Column="1" Grid.Row="5" VerticalOptions="Center" HorizontalOptions="Center">
+                    <Button x:Name="rateBtn" Clicked="rateBtn_Clicked" VerticalOptions="Center" HorizontalOptions="Center"></Button>
+                    <Button x:Name="commentSectionBtn" Clicked="commentSectionBtn_Clicked" VerticalOptions="Center" HorizontalOptions="Center"></Button>
+                    <Button x:Name="favoriteBtn" Clicked="favoriteBtn_Clicked" VerticalOptions="Center" HorizontalOptions="Center"></Button>
+                </StackLayout>
+            </Grid>
+            <Label x:Name="title2" FontAttributes="Bold" HeightRequest="100"></Label>
+            <Label x:Name="title4" FontAttributes="Bold"></Label>
+            <Label x:Name="title5" Text="Users Also Liked:" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"></Label>
+
+            <ListView x:Name="similarLokacijasListView" VerticalOptions="Center" HorizontalOptions="Start">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Image x:Name="image" Grid.Column="0" HeightRequest="50"
+                                       Source="{Binding SlikaThumb, Converter={StaticResource imgConv}}" HorizontalOptions="Center" VerticalOptions="Center"></Image>
+                                <Label Text="{Binding Naziv}" Grid.Column="1" TextColor="Black" FontAttributes="Bold"></Label>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

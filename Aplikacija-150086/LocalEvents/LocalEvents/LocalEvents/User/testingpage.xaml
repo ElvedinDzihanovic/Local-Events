@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:LocalEvents.Converters"
+             x:Class="LocalEvents.User.testingpage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:ImageConverter x:Key="imgConv"></local:ImageConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3*"></RowDefinition>
+                    <RowDefinition Height="2*"></RowDefinition>
+                    <RowDefinition Height="2*"></RowDefinition>
+                    <RowDefinition Height="2*"></RowDefinition>
+                    <RowDefinition Height="2*"></RowDefinition>
+                    <RowDefinition Height="2*"></RowDefinition>
+                    <RowDefinition Height="2*"></RowDefinition>
+                    <RowDefinition Height="2*"></RowDefinition>
+                    <RowDefinition Height="2*"></RowDefinition>
+
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4*"></ColumnDefinition>
+                    <ColumnDefinition Width="6*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <!---->
+            <Label x:Name="nazivLabel" Text="Naziv: " Grid.Column="0" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center" FontSize="Large" FontAttributes="Bold"></Label>
+            <Image x:Name="eventImage" Grid.Column="1" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center"></Image>
+            <!---->
+                <Label x:Name="lokacijaLabel" Text="Lokacija:" Grid.Column="1" Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center"></Label>
+                <Label x:Name="lokacija" Text="Lokacija" Grid.Column="0" Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"></Label>
+                <!---->
+            <Label x:Name="datumLabel" Text="Datum:" Grid.Column="0" Grid.Row="2" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"></Label>
+            <Label x:Name="datum"  Text="21/22/2222" Grid.Column="1" Grid.Row="2" VerticalOptions="Center" HorizontalOptions="Center" ></Label>
+            <!---->
+                <Label x:Name="ageRangeLabel" Text="agerange"  Grid.Column="0" Grid.Row="3" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"></Label>
+                <ListView x:Name="ageRangeListView" Grid.Column="1" Grid.Row="3" VerticalOptions="Center" HorizontalOptions="Center">
+                    <ListView.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>mono</x:String>
+                        <x:String>monodroid</x:String>
+                        <x:String>monotouch</x:String>
+                        <x:String>monorail</x:String>
+                        <x:String>monodevelop</x:String>
+                        <x:String>monotone</x:String>
+                        <x:String>monopoly</x:String>
+                        <x:String>monomodal</x:String>
+                    </x:Array>
+                    </ListView.ItemsSource>
+
+                </ListView>
+                <!---->
+            <Label x:Name="tipLabel" Text="tip" Grid.Column="0" Grid.Row="4" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"></Label>
+            <Label x:Name="tip" Text="Tip" Grid.Column="1" Grid.Row="4" VerticalOptions="Center" HorizontalOptions="Center"></Label>
+            <!---->
+                <Label x:Name="opisLabel" Text="opis sdf fsdaf klj dasflk" Grid.Column="1" Grid.Row="5" VerticalOptions="Center" HorizontalOptions="Center"></Label>
+                <Label x:Name="opis" Text="Opis" Grid.Column="0" Grid.Row="5" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"></Label>
+                <!---->
+            <Label x:Name="statusLabel" Text="Status" TextColor="Red" Grid.Column="1" Grid.Row="6" VerticalOptions="Center" HorizontalOptions="Center"></Label>
+            <Label x:Name="status" Text="Status:" Grid.Column="0" Grid.Row="6" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"></Label>
+            
+            <Button x:Name="organizationLabel" Text="Organization" Grid.Column="1" Grid.Row="7" VerticalOptions="Center" HorizontalOptions="Center"></Button>
+            <Label x:Name="organization" Text="organization" Grid.Column="0" Grid.Row="7" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"></Label>
+            
+            <Label x:Name="buttonsLabel" Text="buttons label" Grid.Column="0" Grid.Row="8" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"></Label>
+            <StackLayout Grid.Column="1" Grid.Row="8" VerticalOptions="Center" HorizontalOptions="Center">
+                <Button x:Name="toVisitBtn" HeightRequest="40" Text="smth" BackgroundColor="White" BorderWidth="1.5" BorderColor="Black"  VerticalOptions="Center" HorizontalOptions="Center"></Button>
+                <Button x:Name="galleriesBtn" VerticalOptions="Center" HeightRequest="40" TextColor="Red" Text="smth 2"  BackgroundColor="White" BorderWidth="1.5" BorderColor="Black" HorizontalOptions="Center"></Button>
+            </StackLayout>
+        </Grid>
+            <Label x:Name="title2" HeightRequest="50" FontAttributes="Bold"></Label>
+            <Label x:Name="title3" Text="Similar Events:" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"></Label>
+            
+            <ListView x:Name="similarEventsListVies" VerticalOptions="Center" HorizontalOptions="Start">
+              <ListView.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>mono</x:String>
+                        <x:String>monodroid</x:String>
+                        <x:String>monotouch</x:String>
+                        <x:String>monorail</x:String>
+                        <x:String>monodevelop</x:String>
+                        <x:String>monotone</x:String>
+                        <x:String>monopoly</x:String>
+                        <x:String>monomodal</x:String>
+                    </x:Array>
+                    </ListView.ItemsSource>
+            </ListView>
+        
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

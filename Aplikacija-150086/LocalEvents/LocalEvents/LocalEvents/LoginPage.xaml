@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LocalEvents.LoginPage">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="CenterAndExpand"  Padding="50">
+            <Label Text="Prijava @ Local Events"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" FontSize="Medium" />
+
+            <Entry x:Name="korisnickoImeInput" Placeholder="Korisničko ime"></Entry>
+            <Entry x:Name="lozinkaInput" Placeholder="Lozinka" IsPassword="True"></Entry>
+
+            <StackLayout Orientation="Vertical" HorizontalOptions="End">
+                <Button x:Name="loginBtn" Text="Prijavi se" TextColor="Black" Clicked="loginBtn_Clicked"></Button>
+                <Button x:Name="registerButton" BackgroundColor="Blue" Text="Registracija" Clicked="registerButton_Clicked"></Button>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

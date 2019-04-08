@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:LocalEvents.Converters"
+             x:Class="LocalEvents.Lokacije.MyFavLocationsPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:ImageConverter x:Key="imgConv"></local:ImageConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView x:Name="lokacijaList" Margin="20" ItemTapped="lokacijaList_ItemTapped">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <Image x:Name="lokacijaImage" Grid.Column="0" Source="{Binding SlikaThumb, Converter={StaticResource imgConv}}" Margin="5" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                <Label Text="{Binding Naziv}" Grid.Column="1" VerticalTextAlignment="Center" HorizontalOptions="Center" />
+                                <Label Text="{Binding LokacijaTipNaziv}" Grid.Column="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"></Label>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

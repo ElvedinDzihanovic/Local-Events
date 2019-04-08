@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:LocalEvents.Converters"
+             x:Class="LocalEvents.Events.MainPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+        <local:ImageConverter x:Key="imgConv"></local:ImageConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout Padding="30">
+            <Label Text="Welcome to Local Events!"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" 
+                FontSize="Medium"   />
+            <ListView x:Name="eventList" RowHeight="100" ItemTapped="eventList_ItemTapped">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Image HeightRequest="50" x:Name="image" Grid.Column="0"
+                                       Source="{Binding SlikaThumb, Converter={StaticResource imgConv}}" Margin="5" HorizontalOptions="Center" VerticalOptions="Center"></Image>
+                                <Label Text="{Binding Naziv}" FontAttributes="Bold" Grid.Column="1" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                                <StackLayout Grid.Column="2" VerticalOptions="Center" HorizontalOptions="Center">
+                                <Label Text="{Binding LokacijaNaziv}"/>
+                                <Label Text="{Binding DatumOdrzavanja, StringFormat='{0:MMMM dd, yyyy}'}"></Label>
+                                </StackLayout>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

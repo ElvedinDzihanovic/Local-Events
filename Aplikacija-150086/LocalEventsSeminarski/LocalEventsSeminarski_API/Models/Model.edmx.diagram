@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="51603d6cc18a47bb9be7efc64fdb19d2" Name="Diagram1">
+        <EntityTypeShape EntityType="LocalEventsModel.AgeRange" Width="1.5" PointX="5.25" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LocalEventsModel.Drzava" Width="1.5" PointX="0.75" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="LocalEventsModel.Event" Width="1.5" PointX="7.5" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LocalEventsModel.EventGallery" Width="1.5" PointX="9.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LocalEventsModel.EventTip" Width="1.5" PointX="5.25" PointY="23.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LocalEventsModel.EventToVisit" Width="1.5" PointX="12.75" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LocalEventsModel.Grad" Width="1.5" PointX="3" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LocalEventsModel.Korisnik" Width="1.5" PointX="5.25" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="LocalEventsModel.KorisnikUloga" Width="1.5" PointX="7.5" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="LocalEventsModel.Lokacija" Width="1.5" PointX="10.25" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LocalEventsModel.LokacijaTip" Width="1.5" PointX="8" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LocalEventsModel.Organizacija" Width="1.5" PointX="5.25" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LocalEventsModel.Posjetilac" Width="1.5" PointX="7.5" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LocalEventsModel.PosjetilacLokacija" Width="1.5" PointX="9.75" PointY="19.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LocalEventsModel.PosjetilacOrganizacija" Width="1.5" PointX="12.75" PointY="19.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LocalEventsModel.Slika" Width="1.5" PointX="12" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LocalEventsModel.Uloga" Width="1.5" PointX="5.25" PointY="7.125" IsExpanded="true" />
+        <AssociationConnector Association="LocalEventsModel.FK__Grad__DrzavaID__173876EA" ManuallyRouted="false" />
+        <AssociationConnector Association="LocalEventsModel.FK__Event__EventTipI__3A81B327" ManuallyRouted="false" />
+        <AssociationConnector Association="LocalEventsModel.FK__Event__KreatorID__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="LocalEventsModel.FK__Event__LokacijaI__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="LocalEventsModel.FK__Event__Organizac__3B75D760" ManuallyRouted="false" />
+        <AssociationConnector Association="LocalEventsModel.FK__EventGall__Event__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="LocalEventsModel.FK__EventToVi__Event__49C3F6B7" ManuallyRouted="false" />
+        <AssociationConnector Association="LocalEventsModel.FK__Slika__EventGall__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="LocalEventsModel.FK__EventToVi__Posje__48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="LocalEventsModel.FK__Korisnik__GradID__1A14E395" ManuallyRouted="false" />
+        <AssociationConnector Association="LocalEventsModel.FK__Lokacija__GradID__2B3F6F97" ManuallyRouted="false" />
+        <AssociationConnector Association="LocalEventsModel.FK__Organizac__GradI__32E0915F" ManuallyRouted="false" />
+        <AssociationConnector Association="LocalEventsModel.FK__KorisnikU__Koris__1ED998B2" ManuallyRouted="false" />
+        <AssociationConnector Association="LocalEventsModel.FK_PosjetilacKorisnik" ManuallyRouted="false" />
+        <AssociationConnector Association="LocalEventsModel.FK__KorisnikU__Uloga__1FCDBCEB" ManuallyRouted="false" />
+        <AssociationConnector Association="LocalEventsModel.FK__Lokacija__Lokaci__2C3393D0" ManuallyRouted="false" />
+        <AssociationConnector Association="LocalEventsModel.FK__Posjetila__Lokac__300424B4" ManuallyRouted="false" />
+        <AssociationConnector Association="LocalEventsModel.FK__Posjetila__Organ__36B12243" ManuallyRouted="false" />
+        <AssociationConnector Association="LocalEventsModel.FK__Posjetila__Posje__2F10007B" ManuallyRouted="false" />
+        <AssociationConnector Association="LocalEventsModel.FK__Posjetila__Posje__35BCFE0A" ManuallyRouted="false" />
+        <AssociationConnector Association="LocalEventsModel.EventAgeRange" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

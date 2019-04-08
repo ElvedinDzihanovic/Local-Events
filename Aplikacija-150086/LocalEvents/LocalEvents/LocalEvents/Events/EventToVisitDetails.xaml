@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LocalEvents.Events.EventToVisitDetails">
+    <ContentPage.Content>
+        <Grid VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"></ColumnDefinition>
+                <ColumnDefinition Width="6*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Label x:Name="nazivLabel" Grid.Row="0" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Medium"></Label>
+            <Image x:Name="eventImage" Grid.Row="0" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Center"></Image>
+
+            <Label x:Name="datumOdrzavanjaTitle" Grid.Row="1" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"></Label>
+            <Label x:Name="datumOdrzavanjaLabel" Grid.Row="1" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Center"></Label>
+
+            <Label x:Name="lokacijaTitle" Grid.Row="2" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"></Label>
+            <Label x:Name="lokacijaLabel" Grid.Row="2" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Center"></Label>
+
+            <Label x:Name="opisTitle" Grid.Row="3" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"></Label>
+            <Label x:Name="opisLabel" Grid.Row="3" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Center"></Label>
+
+            <Label x:Name="optionsLabel" Grid.Row="4" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"></Label>
+            <StackLayout Grid.Row="4" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Center">
+                <Button x:Name="removeBtn" Clicked="removeBtn_Clicked"></Button>
+                <Button x:Name="rateBtn" Clicked="rateBtn_Clicked"></Button>
+                <Button x:Name="commentSection" Clicked="commentSection_Clicked"></Button>
+            </StackLayout>
+        </Grid>
+
+    </ContentPage.Content>
+</ContentPage>

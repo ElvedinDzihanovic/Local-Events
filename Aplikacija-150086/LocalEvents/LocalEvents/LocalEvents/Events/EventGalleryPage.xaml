@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LocalEvents.Events.EventGalleryPage">
+    <ContentPage.Content>
+        <ListView x:Name="eventGalleryList" RowHeight="100" ItemTapped="eventGalleryList_ItemTapped">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*"></ColumnDefinition>
+                                <ColumnDefinition Width="3*"></ColumnDefinition>
+                                <ColumnDefinition Width="3*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Label Text="{Binding Naziv}" FontAttributes="Bold" Grid.Column="0" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                            <Label Text="{Binding Opis}" Grid.Column="1" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                            <Label Text="{Binding DatumKreiranja, StringFormat='{0:MMMM dd, yyyy}'}" Grid.Column="2" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"></Label>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>

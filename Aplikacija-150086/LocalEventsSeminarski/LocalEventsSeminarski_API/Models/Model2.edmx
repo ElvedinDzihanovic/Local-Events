@@ -1,0 +1,2783 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model2.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AgeRange">
+          <Key>
+            <PropertyRef Name="AgeRangeID" />
+          </Key>
+          <Property Name="AgeRangeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Range" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Drzava">
+          <Key>
+            <PropertyRef Name="DrzavaID" />
+          </Key>
+          <Property Name="DrzavaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naziv" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="EventID" />
+          </Key>
+          <Property Name="EventID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naziv" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="3000" Nullable="false" />
+          <Property Name="KreatorID" Type="int" Nullable="false" />
+          <Property Name="AverageRating" Type="float" Nullable="false" />
+          <Property Name="DatumKreiranja" Type="datetime" Nullable="false" />
+          <Property Name="DatumOdrzavanja" Type="datetime" Nullable="false" />
+          <Property Name="VrijemePocetka" Type="time" Precision="7" />
+          <Property Name="VrijemeZavrsetka" Type="time" Precision="7" />
+          <Property Name="Slika" Type="varbinary(max)" />
+          <Property Name="SlikaThumb" Type="varbinary(max)" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EventTipID" Type="int" Nullable="false" />
+          <Property Name="OrganizacijaID" Type="int" />
+          <Property Name="LokacijaID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EventAgeRange">
+          <Key>
+            <PropertyRef Name="EventID" />
+            <PropertyRef Name="AgeRangeID" />
+          </Key>
+          <Property Name="EventID" Type="int" Nullable="false" />
+          <Property Name="AgeRangeID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EventGallery">
+          <Key>
+            <PropertyRef Name="EventGalleryID" />
+          </Key>
+          <Property Name="EventGalleryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naziv" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="3000" Nullable="false" />
+          <Property Name="DatumKreiranja" Type="datetime" Nullable="false" />
+          <Property Name="EventID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EventTip">
+          <Key>
+            <PropertyRef Name="EventTipID" />
+          </Key>
+          <Property Name="EventTipID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naziv" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EventToVisit">
+          <Key>
+            <PropertyRef Name="PosjetilacID" />
+            <PropertyRef Name="EventID" />
+          </Key>
+          <Property Name="PosjetilacID" Type="int" Nullable="false" />
+          <Property Name="EventID" Type="int" Nullable="false" />
+          <Property Name="Prisustvovao" Type="bit" />
+          <Property Name="EventRating" Type="int" />
+          <Property Name="RatingDate" Type="datetime" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="3000" />
+          <Property Name="CommentDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Grad">
+          <Key>
+            <PropertyRef Name="GradID" />
+          </Key>
+          <Property Name="GradID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naziv" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DrzavaID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Korisnik">
+          <Key>
+            <PropertyRef Name="KorisnikID" />
+          </Key>
+          <Property Name="KorisnikID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ime" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Prezime" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Telefon" Type="nvarchar" MaxLength="20" />
+          <Property Name="KorisnickoIme" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LozinkaHash" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LozinkaSalt" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="Slika" Type="varbinary(max)" />
+          <Property Name="SlikaThumb" Type="varbinary(max)" />
+          <Property Name="GradID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="KorisnikUloga">
+          <Key>
+            <PropertyRef Name="KorisnikUlogaID" />
+          </Key>
+          <Property Name="KorisnikUlogaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KorisnikID" Type="int" Nullable="false" />
+          <Property Name="UlogaID" Type="int" Nullable="false" />
+          <Property Name="DatumIzmjene" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Lokacija">
+          <Key>
+            <PropertyRef Name="LokacijaID" />
+          </Key>
+          <Property Name="LokacijaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naziv" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="3000" />
+          <Property Name="Kapacitet" Type="int" />
+          <Property Name="Adresa" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Slika" Type="varbinary(max)" />
+          <Property Name="SlikaThumb" Type="varbinary(max)" />
+          <Property Name="AverageRating" Type="float" />
+          <Property Name="GradID" Type="int" Nullable="false" />
+          <Property Name="LokacijaTipID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LokacijaTip">
+          <Key>
+            <PropertyRef Name="LokacijaTipID" />
+          </Key>
+          <Property Name="LokacijaTipID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naziv" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Organizacija">
+          <Key>
+            <PropertyRef Name="OrganizacijaID" />
+          </Key>
+          <Property Name="OrganizacijaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naziv" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="3000" />
+          <Property Name="Tip" Type="nvarchar" MaxLength="50" />
+          <Property Name="SlikaLogo" Type="varbinary(max)" />
+          <Property Name="GradID" Type="int" Nullable="false" />
+          <Property Name="AverageRating" Type="float" />
+        </EntityType>
+        <EntityType Name="Posjetilac">
+          <Key>
+            <PropertyRef Name="PosjetilacID" />
+          </Key>
+          <Property Name="PosjetilacID" Type="int" Nullable="false" />
+          <Property Name="BrojPosjecenihDogadjaja" Type="int" />
+          <Property Name="Zanimanje" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PosjetilacLokacija">
+          <Key>
+            <PropertyRef Name="PosjetilacID" />
+            <PropertyRef Name="LokacijaID" />
+          </Key>
+          <Property Name="PosjetilacID" Type="int" Nullable="false" />
+          <Property Name="LokacijaID" Type="int" Nullable="false" />
+          <Property Name="LocationRating" Type="int" />
+          <Property Name="RatingDate" Type="datetime" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="3000" />
+          <Property Name="CommentDate" Type="datetime" />
+          <Property Name="IsFavorite" Type="bit" />
+        </EntityType>
+        <EntityType Name="PosjetilacOrganizacija">
+          <Key>
+            <PropertyRef Name="PosjetilacID" />
+            <PropertyRef Name="OrganizacijaID" />
+          </Key>
+          <Property Name="PosjetilacID" Type="int" Nullable="false" />
+          <Property Name="OrganizacijaID" Type="int" Nullable="false" />
+          <Property Name="LocationRating" Type="int" />
+          <Property Name="RatingDate" Type="datetime" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="3000" />
+          <Property Name="CommentDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Slika">
+          <Key>
+            <PropertyRef Name="SlikaID" />
+          </Key>
+          <Property Name="SlikaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EventGalleryID" Type="int" Nullable="false" />
+          <Property Name="Slika" Type="varbinary(max)" Nullable="false" />
+          <Property Name="SlikaThumb" Type="varbinary(max)" Nullable="false" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Uloga">
+          <Key>
+            <PropertyRef Name="UlogaID" />
+          </Key>
+          <Property Name="UlogaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naziv" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="300" />
+        </EntityType>
+        <Association Name="FK__Event__EventTipI__30F848ED">
+          <End Role="EventTip" Type="Self.EventTip" Multiplicity="1" />
+          <End Role="Event" Type="Self.Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EventTip">
+              <PropertyRef Name="EventTipID" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="EventTipID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Event__KreatorID__31EC6D26">
+          <End Role="Korisnik" Type="Self.Korisnik" Multiplicity="1" />
+          <End Role="Event" Type="Self.Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Korisnik">
+              <PropertyRef Name="KorisnikID" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="KreatorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Event__LokacijaI__32E0915F">
+          <End Role="Lokacija" Type="Self.Lokacija" Multiplicity="1" />
+          <End Role="Event" Type="Self.Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lokacija">
+              <PropertyRef Name="LokacijaID" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="LokacijaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Event__Organizac__33D4B598">
+          <End Role="Organizacija" Type="Self.Organizacija" Multiplicity="0..1" />
+          <End Role="Event" Type="Self.Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organizacija">
+              <PropertyRef Name="OrganizacijaID" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="OrganizacijaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EventAgeR__AgeRa__34C8D9D1">
+          <End Role="AgeRange" Type="Self.AgeRange" Multiplicity="1" />
+          <End Role="EventAgeRange" Type="Self.EventAgeRange" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AgeRange">
+              <PropertyRef Name="AgeRangeID" />
+            </Principal>
+            <Dependent Role="EventAgeRange">
+              <PropertyRef Name="AgeRangeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EventAgeR__Event__35BCFE0A">
+          <End Role="Event" Type="Self.Event" Multiplicity="1" />
+          <End Role="EventAgeRange" Type="Self.EventAgeRange" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="EventAgeRange">
+              <PropertyRef Name="EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EventGall__Event__36B12243">
+          <End Role="Event" Type="Self.Event" Multiplicity="1" />
+          <End Role="EventGallery" Type="Self.EventGallery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="EventGallery">
+              <PropertyRef Name="EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EventToVi__Event__37A5467C">
+          <End Role="Event" Type="Self.Event" Multiplicity="1" />
+          <End Role="EventToVisit" Type="Self.EventToVisit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="EventToVisit">
+              <PropertyRef Name="EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EventToVi__Posje__38996AB5">
+          <End Role="Posjetilac" Type="Self.Posjetilac" Multiplicity="1" />
+          <End Role="EventToVisit" Type="Self.EventToVisit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Posjetilac">
+              <PropertyRef Name="PosjetilacID" />
+            </Principal>
+            <Dependent Role="EventToVisit">
+              <PropertyRef Name="PosjetilacID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Grad__DrzavaID__398D8EEE">
+          <End Role="Drzava" Type="Self.Drzava" Multiplicity="1" />
+          <End Role="Grad" Type="Self.Grad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drzava">
+              <PropertyRef Name="DrzavaID" />
+            </Principal>
+            <Dependent Role="Grad">
+              <PropertyRef Name="DrzavaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Korisnik__GradID__3A81B327">
+          <End Role="Grad" Type="Self.Grad" Multiplicity="1" />
+          <End Role="Korisnik" Type="Self.Korisnik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grad">
+              <PropertyRef Name="GradID" />
+            </Principal>
+            <Dependent Role="Korisnik">
+              <PropertyRef Name="GradID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__KorisnikU__Koris__3B75D760">
+          <End Role="Korisnik" Type="Self.Korisnik" Multiplicity="1" />
+          <End Role="KorisnikUloga" Type="Self.KorisnikUloga" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Korisnik">
+              <PropertyRef Name="KorisnikID" />
+            </Principal>
+            <Dependent Role="KorisnikUloga">
+              <PropertyRef Name="KorisnikID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__KorisnikU__Uloga__3C69FB99">
+          <End Role="Uloga" Type="Self.Uloga" Multiplicity="1" />
+          <End Role="KorisnikUloga" Type="Self.KorisnikUloga" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uloga">
+              <PropertyRef Name="UlogaID" />
+            </Principal>
+            <Dependent Role="KorisnikUloga">
+              <PropertyRef Name="UlogaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Lokacija__GradID__3D5E1FD2">
+          <End Role="Grad" Type="Self.Grad" Multiplicity="1" />
+          <End Role="Lokacija" Type="Self.Lokacija" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grad">
+              <PropertyRef Name="GradID" />
+            </Principal>
+            <Dependent Role="Lokacija">
+              <PropertyRef Name="GradID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Lokacija__Lokaci__3E52440B">
+          <End Role="LokacijaTip" Type="Self.LokacijaTip" Multiplicity="1" />
+          <End Role="Lokacija" Type="Self.Lokacija" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LokacijaTip">
+              <PropertyRef Name="LokacijaTipID" />
+            </Principal>
+            <Dependent Role="Lokacija">
+              <PropertyRef Name="LokacijaTipID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Organizac__GradI__3F466844">
+          <End Role="Grad" Type="Self.Grad" Multiplicity="1" />
+          <End Role="Organizacija" Type="Self.Organizacija" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grad">
+              <PropertyRef Name="GradID" />
+            </Principal>
+            <Dependent Role="Organizacija">
+              <PropertyRef Name="GradID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Posjetila__Lokac__412EB0B6">
+          <End Role="Lokacija" Type="Self.Lokacija" Multiplicity="1" />
+          <End Role="PosjetilacLokacija" Type="Self.PosjetilacLokacija" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lokacija">
+              <PropertyRef Name="LokacijaID" />
+            </Principal>
+            <Dependent Role="PosjetilacLokacija">
+              <PropertyRef Name="LokacijaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Posjetila__Organ__4316F928">
+          <End Role="Organizacija" Type="Self.Organizacija" Multiplicity="1" />
+          <End Role="PosjetilacOrganizacija" Type="Self.PosjetilacOrganizacija" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organizacija">
+              <PropertyRef Name="OrganizacijaID" />
+            </Principal>
+            <Dependent Role="PosjetilacOrganizacija">
+              <PropertyRef Name="OrganizacijaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Posjetila__Posje__4222D4EF">
+          <End Role="Posjetilac" Type="Self.Posjetilac" Multiplicity="1" />
+          <End Role="PosjetilacLokacija" Type="Self.PosjetilacLokacija" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Posjetilac">
+              <PropertyRef Name="PosjetilacID" />
+            </Principal>
+            <Dependent Role="PosjetilacLokacija">
+              <PropertyRef Name="PosjetilacID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Posjetila__Posje__440B1D61">
+          <End Role="Posjetilac" Type="Self.Posjetilac" Multiplicity="1" />
+          <End Role="PosjetilacOrganizacija" Type="Self.PosjetilacOrganizacija" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Posjetilac">
+              <PropertyRef Name="PosjetilacID" />
+            </Principal>
+            <Dependent Role="PosjetilacOrganizacija">
+              <PropertyRef Name="PosjetilacID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Slika__EventGall__44FF419A">
+          <End Role="EventGallery" Type="Self.EventGallery" Multiplicity="1" />
+          <End Role="Slika" Type="Self.Slika" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EventGallery">
+              <PropertyRef Name="EventGalleryID" />
+            </Principal>
+            <Dependent Role="Slika">
+              <PropertyRef Name="EventGalleryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PosjetilacKorisnik">
+          <End Role="Korisnik" Type="Self.Korisnik" Multiplicity="1" />
+          <End Role="Posjetilac" Type="Self.Posjetilac" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Korisnik">
+              <PropertyRef Name="KorisnikID" />
+            </Principal>
+            <Dependent Role="Posjetilac">
+              <PropertyRef Name="PosjetilacID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="GetSlikaByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SlikaID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="esp_AgeRange_SelectAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="esp_EventAgeRange_GetByEvent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EventID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="esp_EventAgeRange_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AgeRangeID" Type="int" Mode="In" />
+          <Parameter Name="EventID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="esp_EventGallery_GetByEvent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EventID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="esp_EventGallery_GetByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EventGalleryID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="esp_EventGallery_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EventID" Type="int" Mode="In" />
+          <Parameter Name="Naziv" Type="nvarchar" Mode="In" />
+          <Parameter Name="Opis" Type="nvarchar" Mode="In" />
+          <Parameter Name="DatumKreiranja" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="esp_EventGallery_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EventGalleryID" Type="int" Mode="In" />
+          <Parameter Name="Naziv" Type="nvarchar" Mode="In" />
+          <Parameter Name="Opis" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="esp_EventTip_SelectAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="esp_EventToVisit_GetByPosjetilacID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PosjetilacID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="esp_EventToVisit_GetDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PosjetilacID" Type="int" Mode="In" />
+          <Parameter Name="EventID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="esp_EventToVisit_Remove" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EventID" Type="int" Mode="In" />
+          <Parameter Name="PosjetilacID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="esp_EventToVisit_UpdateAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PosjetilacID" Type="int" Mode="In" />
+          <Parameter Name="EventID" Type="int" Mode="In" />
+          <Parameter Name="Comment" Type="nvarchar" Mode="In" />
+          <Parameter Name="Rating" Type="int" Mode="In" />
+        </Function>
+        <Function Name="esp_EventToVisit_UpdateComment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PosjetilacID" Type="int" Mode="In" />
+          <Parameter Name="EventID" Type="int" Mode="In" />
+          <Parameter Name="Comment" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="esp_EventToVisit_UpdateRating" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PosjetilacID" Type="int" Mode="In" />
+          <Parameter Name="EventID" Type="int" Mode="In" />
+          <Parameter Name="Rating" Type="int" Mode="In" />
+        </Function>
+        <Function Name="esp_Event_GetByEventTip" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EventTipID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="esp_Event_GetByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EventID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="esp_Event_GetComments" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EventID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="esp_Event_GetDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EventID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="esp_Event_GetEvents" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Naziv" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="esp_Event_GetReport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EventID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="esp_Event_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="KreatorID" Type="int" Mode="In" />
+          <Parameter Name="Naziv" Type="nvarchar" Mode="In" />
+          <Parameter Name="Opis" Type="nvarchar" Mode="In" />
+          <Parameter Name="DatumKreiranja" Type="datetime" Mode="In" />
+          <Parameter Name="DatumOdrzavanja" Type="datetime" Mode="In" />
+          <Parameter Name="VrijemePocetka" Type="time" Mode="In" />
+          <Parameter Name="VrijemeZavrsetka" Type="time" Mode="In" />
+          <Parameter Name="Slika" Type="varbinary(max)" Mode="In" />
+          <Parameter Name="SlikaThumb" Type="varbinary(max)" Mode="In" />
+          <Parameter Name="Status" Type="nvarchar" Mode="In" />
+          <Parameter Name="EventTipID" Type="int" Mode="In" />
+          <Parameter Name="OrganizacijaID" Type="int" Mode="In" />
+          <Parameter Name="LokacijaID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="esp_Event_OrderByDatum" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="esp_Event_OrderByLokacija" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="esp_Event_ToVisit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EventID" Type="int" Mode="In" />
+          <Parameter Name="PosjetilacID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="esp_Event_Top5ByGradMjesec" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="GradID" Type="int" Mode="In" />
+          <Parameter Name="Mjesec" Type="int" Mode="In" />
+        </Function>
+        <Function Name="esp_Event_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EventID" Type="int" Mode="In" />
+          <Parameter Name="Naziv" Type="nvarchar" Mode="In" />
+          <Parameter Name="Opis" Type="nvarchar" Mode="In" />
+          <Parameter Name="LokacijaID" Type="int" Mode="In" />
+          <Parameter Name="OrganizacijaID" Type="int" Mode="In" />
+          <Parameter Name="EventTipID" Type="int" Mode="In" />
+          <Parameter Name="VrijemePocetka" Type="time" Mode="In" />
+          <Parameter Name="VrijemeZavrsetka" Type="time" Mode="In" />
+          <Parameter Name="DatumOdrzavanja" Type="datetime" Mode="In" />
+          <Parameter Name="Status" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="esp_Event_UpdateStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Status" Type="nvarchar" Mode="In" />
+          <Parameter Name="EventID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="esp_Events_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Naziv" Type="nvarchar" Mode="In" />
+          <Parameter Name="Opis" Type="nvarchar" Mode="In" />
+          <Parameter Name="KreatorID" Type="int" Mode="In" />
+          <Parameter Name="DatumKreiranja" Type="datetime" Mode="In" />
+          <Parameter Name="DatumOdrzavanja" Type="datetime" Mode="In" />
+          <Parameter Name="VrijemePocetka" Type="time" Mode="In" />
+          <Parameter Name="VrijemeZavrsetka" Type="time" Mode="In" />
+          <Parameter Name="Slika" Type="varbinary(max)" Mode="In" />
+          <Parameter Name="SlikaThumb" Type="varbinary(max)" Mode="In" />
+          <Parameter Name="Status" Type="varchar" Mode="In" />
+          <Parameter Name="EventTipID" Type="int" Mode="In" />
+          <Parameter Name="OrganizacijaID" Type="int" Mode="In" />
+          <Parameter Name="LokacijaID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="esp_Events_SelectAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="esp_Grad_SelectAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="esp_Korisnik_GetByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="KorisnikID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="esp_Korisnik_GetByKorisnickoIme" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="KorisnickoIme" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="esp_Korisnik_GetByUsername" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="KorisnickoIme" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="esp_Korisnik_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Ime" Type="nvarchar" Mode="In" />
+          <Parameter Name="Prezime" Type="nvarchar" Mode="In" />
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+          <Parameter Name="Telefon" Type="nvarchar" Mode="In" />
+          <Parameter Name="KorisnickoIme" Type="nvarchar" Mode="In" />
+          <Parameter Name="LozinkaSalt" Type="nvarchar" Mode="In" />
+          <Parameter Name="LozinkaHash" Type="nvarchar" Mode="In" />
+          <Parameter Name="GradID" Type="int" Mode="In" />
+          <Parameter Name="Slika" Type="varbinary(max)" Mode="In" />
+          <Parameter Name="SlikaThumb" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="esp_Korisnik_SelectAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="esp_Korisnik_SelectByImePrezime" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ImePrezime" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="esp_Korisnik_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="KorisnikID" Type="int" Mode="In" />
+          <Parameter Name="Ime" Type="nvarchar" Mode="In" />
+          <Parameter Name="Prezime" Type="nvarchar" Mode="In" />
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+          <Parameter Name="Telefon" Type="nvarchar" Mode="In" />
+          <Parameter Name="KorisnickoIme" Type="nvarchar" Mode="In" />
+          <Parameter Name="LozinkaSalt" Type="nvarchar" Mode="In" />
+          <Parameter Name="LozinkaHash" Type="nvarchar" Mode="In" />
+          <Parameter Name="Status" Type="bit" Mode="In" />
+          <Parameter Name="GradID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="esp_LokacijaTip_SelectAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="esp_Lokacija_GetByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LokacijaID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="esp_Lokacija_GetComments" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LokacijaID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="esp_Lokacija_GetFavoriteLokacijas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PosjetilacID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="esp_Lokacija_GetLokacijaList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="esp_Lokacija_GetTop5ByGrad" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="GradID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="esp_Lokacija_Input" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Naziv" Type="nvarchar" Mode="In" />
+          <Parameter Name="Opis" Type="nvarchar" Mode="In" />
+          <Parameter Name="Kapacitet" Type="int" Mode="In" />
+          <Parameter Name="Adresa" Type="nvarchar" Mode="In" />
+          <Parameter Name="Slika" Type="varbinary(max)" Mode="In" />
+          <Parameter Name="SlikaThumb" Type="varbinary(max)" Mode="In" />
+          <Parameter Name="AverageRating" Type="float" Mode="In" />
+          <Parameter Name="GradID" Type="int" Mode="In" />
+          <Parameter Name="LokacijaTipID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="esp_Lokacija_SelectAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Naziv" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="esp_Lokacija_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LokacijaID" Type="int" Mode="In" />
+          <Parameter Name="Naziv" Type="nvarchar" Mode="In" />
+          <Parameter Name="Opis" Type="nvarchar" Mode="In" />
+          <Parameter Name="Kapacitet" Type="int" Mode="In" />
+          <Parameter Name="Adresa" Type="nvarchar" Mode="In" />
+          <Parameter Name="GradID" Type="int" Mode="In" />
+          <Parameter Name="LokacijaTipID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="esp_Organizacija_GetByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="OrganizacijaID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="esp_Organizacija_GetComments" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="OrganizacijaID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="esp_Organizacija_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Naziv" Type="nvarchar" Mode="In" />
+          <Parameter Name="Opis" Type="nvarchar" Mode="In" />
+          <Parameter Name="Tip" Type="nvarchar" Mode="In" />
+          <Parameter Name="GradID" Type="int" Mode="In" />
+          <Parameter Name="SlikaLogo" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="esp_Organizacija_SelectAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Naziv" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="esp_Organizacija_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="OrganizacijaID" Type="int" Mode="In" />
+          <Parameter Name="Naziv" Type="nvarchar" Mode="In" />
+          <Parameter Name="Opis" Type="nvarchar" Mode="In" />
+          <Parameter Name="Tip" Type="nvarchar" Mode="In" />
+          <Parameter Name="GradID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="esp_PosjetilacLokacija_GetByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PosjetilacID" Type="int" Mode="In" />
+          <Parameter Name="LokacijaID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="esp_PosjetilacLokacija_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PosjetilacID" Type="int" Mode="In" />
+          <Parameter Name="LokacijaID" Type="int" Mode="In" />
+          <Parameter Name="LocationRating" Type="int" Mode="In" />
+          <Parameter Name="Comment" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="esp_PosjetilacLokacija_UpdateAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PosjetilacID" Type="int" Mode="In" />
+          <Parameter Name="LokacijaID" Type="int" Mode="In" />
+          <Parameter Name="Comment" Type="nvarchar" Mode="In" />
+          <Parameter Name="Rating" Type="int" Mode="In" />
+        </Function>
+        <Function Name="esp_PosjetilacLokacija_UpdateComment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PosjetilacID" Type="int" Mode="In" />
+          <Parameter Name="LokacijaID" Type="int" Mode="In" />
+          <Parameter Name="Comment" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="esp_PosjetilacLokacija_UpdateFavoriteStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PosjetilacID" Type="int" Mode="In" />
+          <Parameter Name="LokacijaID" Type="int" Mode="In" />
+          <Parameter Name="IsFavorite" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="esp_PosjetilacLokacija_UpdateRating" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PosjetilacID" Type="int" Mode="In" />
+          <Parameter Name="LokacijaID" Type="int" Mode="In" />
+          <Parameter Name="LokacijaRating" Type="int" Mode="In" />
+        </Function>
+        <Function Name="esp_PosjetilacOrganizacija_GetByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PosjetilacID" Type="int" Mode="In" />
+          <Parameter Name="OrganizacijaID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="esp_PosjetilacOrganizacija_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PosjetilacID" Type="int" Mode="In" />
+          <Parameter Name="OrganizacijaID" Type="int" Mode="In" />
+          <Parameter Name="LocationRating" Type="int" Mode="In" />
+          <Parameter Name="Comment" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="esp_PosjetilacOrganizacija_UpdateAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PosjetilacID" Type="int" Mode="In" />
+          <Parameter Name="OrganizacijaID" Type="int" Mode="In" />
+          <Parameter Name="Comment" Type="nvarchar" Mode="In" />
+          <Parameter Name="Rating" Type="int" Mode="In" />
+        </Function>
+        <Function Name="esp_PosjetilacOrganizacija_UpdateComment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PosjetilacID" Type="int" Mode="In" />
+          <Parameter Name="OrganizacijaID" Type="int" Mode="In" />
+          <Parameter Name="Comment" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="esp_PosjetilacOrganizacija_UpdateRating" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PosjetilacID" Type="int" Mode="In" />
+          <Parameter Name="OrganizacijaID" Type="int" Mode="In" />
+          <Parameter Name="Rating" Type="int" Mode="In" />
+        </Function>
+        <Function Name="esp_Posjetilac_GetByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PosjetilacID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="esp_Slika_GetByGallery" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EventGalleryID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="esp_Slika_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EventGalleryID" Type="int" Mode="In" />
+          <Parameter Name="Slika" Type="varbinary(max)" Mode="In" />
+          <Parameter Name="SlikaThumb" Type="varbinary(max)" Mode="In" />
+          <Parameter Name="Opis" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="esp_Slika_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SlikaID" Type="int" Mode="In" />
+          <Parameter Name="Opis" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="esp_Uloga_SelectAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="Model2StoreContainer">
+          <EntitySet Name="AgeRange" EntityType="Self.AgeRange" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Drzava" EntityType="Self.Drzava" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Event" EntityType="Self.Event" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EventAgeRange" EntityType="Self.EventAgeRange" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EventGallery" EntityType="Self.EventGallery" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EventTip" EntityType="Self.EventTip" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EventToVisit" EntityType="Self.EventToVisit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Grad" EntityType="Self.Grad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Korisnik" EntityType="Self.Korisnik" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KorisnikUloga" EntityType="Self.KorisnikUloga" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lokacija" EntityType="Self.Lokacija" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LokacijaTip" EntityType="Self.LokacijaTip" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Organizacija" EntityType="Self.Organizacija" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Posjetilac" EntityType="Self.Posjetilac" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PosjetilacLokacija" EntityType="Self.PosjetilacLokacija" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PosjetilacOrganizacija" EntityType="Self.PosjetilacOrganizacija" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Slika" EntityType="Self.Slika" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Uloga" EntityType="Self.Uloga" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Event__EventTipI__30F848ED" Association="Self.FK__Event__EventTipI__30F848ED">
+            <End Role="EventTip" EntitySet="EventTip" />
+            <End Role="Event" EntitySet="Event" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Event__KreatorID__31EC6D26" Association="Self.FK__Event__KreatorID__31EC6D26">
+            <End Role="Korisnik" EntitySet="Korisnik" />
+            <End Role="Event" EntitySet="Event" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Event__LokacijaI__32E0915F" Association="Self.FK__Event__LokacijaI__32E0915F">
+            <End Role="Lokacija" EntitySet="Lokacija" />
+            <End Role="Event" EntitySet="Event" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Event__Organizac__33D4B598" Association="Self.FK__Event__Organizac__33D4B598">
+            <End Role="Organizacija" EntitySet="Organizacija" />
+            <End Role="Event" EntitySet="Event" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EventAgeR__AgeRa__34C8D9D1" Association="Self.FK__EventAgeR__AgeRa__34C8D9D1">
+            <End Role="AgeRange" EntitySet="AgeRange" />
+            <End Role="EventAgeRange" EntitySet="EventAgeRange" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EventAgeR__Event__35BCFE0A" Association="Self.FK__EventAgeR__Event__35BCFE0A">
+            <End Role="Event" EntitySet="Event" />
+            <End Role="EventAgeRange" EntitySet="EventAgeRange" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EventGall__Event__36B12243" Association="Self.FK__EventGall__Event__36B12243">
+            <End Role="Event" EntitySet="Event" />
+            <End Role="EventGallery" EntitySet="EventGallery" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EventToVi__Event__37A5467C" Association="Self.FK__EventToVi__Event__37A5467C">
+            <End Role="Event" EntitySet="Event" />
+            <End Role="EventToVisit" EntitySet="EventToVisit" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EventToVi__Posje__38996AB5" Association="Self.FK__EventToVi__Posje__38996AB5">
+            <End Role="Posjetilac" EntitySet="Posjetilac" />
+            <End Role="EventToVisit" EntitySet="EventToVisit" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Grad__DrzavaID__398D8EEE" Association="Self.FK__Grad__DrzavaID__398D8EEE">
+            <End Role="Drzava" EntitySet="Drzava" />
+            <End Role="Grad" EntitySet="Grad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Korisnik__GradID__3A81B327" Association="Self.FK__Korisnik__GradID__3A81B327">
+            <End Role="Grad" EntitySet="Grad" />
+            <End Role="Korisnik" EntitySet="Korisnik" />
+          </AssociationSet>
+          <AssociationSet Name="FK__KorisnikU__Koris__3B75D760" Association="Self.FK__KorisnikU__Koris__3B75D760">
+            <End Role="Korisnik" EntitySet="Korisnik" />
+            <End Role="KorisnikUloga" EntitySet="KorisnikUloga" />
+          </AssociationSet>
+          <AssociationSet Name="FK__KorisnikU__Uloga__3C69FB99" Association="Self.FK__KorisnikU__Uloga__3C69FB99">
+            <End Role="Uloga" EntitySet="Uloga" />
+            <End Role="KorisnikUloga" EntitySet="KorisnikUloga" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Lokacija__GradID__3D5E1FD2" Association="Self.FK__Lokacija__GradID__3D5E1FD2">
+            <End Role="Grad" EntitySet="Grad" />
+            <End Role="Lokacija" EntitySet="Lokacija" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Lokacija__Lokaci__3E52440B" Association="Self.FK__Lokacija__Lokaci__3E52440B">
+            <End Role="LokacijaTip" EntitySet="LokacijaTip" />
+            <End Role="Lokacija" EntitySet="Lokacija" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Organizac__GradI__3F466844" Association="Self.FK__Organizac__GradI__3F466844">
+            <End Role="Grad" EntitySet="Grad" />
+            <End Role="Organizacija" EntitySet="Organizacija" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Posjetila__Lokac__412EB0B6" Association="Self.FK__Posjetila__Lokac__412EB0B6">
+            <End Role="Lokacija" EntitySet="Lokacija" />
+            <End Role="PosjetilacLokacija" EntitySet="PosjetilacLokacija" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Posjetila__Organ__4316F928" Association="Self.FK__Posjetila__Organ__4316F928">
+            <End Role="Organizacija" EntitySet="Organizacija" />
+            <End Role="PosjetilacOrganizacija" EntitySet="PosjetilacOrganizacija" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Posjetila__Posje__4222D4EF" Association="Self.FK__Posjetila__Posje__4222D4EF">
+            <End Role="Posjetilac" EntitySet="Posjetilac" />
+            <End Role="PosjetilacLokacija" EntitySet="PosjetilacLokacija" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Posjetila__Posje__440B1D61" Association="Self.FK__Posjetila__Posje__440B1D61">
+            <End Role="Posjetilac" EntitySet="Posjetilac" />
+            <End Role="PosjetilacOrganizacija" EntitySet="PosjetilacOrganizacija" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Slika__EventGall__44FF419A" Association="Self.FK__Slika__EventGall__44FF419A">
+            <End Role="EventGallery" EntitySet="EventGallery" />
+            <End Role="Slika" EntitySet="Slika" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PosjetilacKorisnik" Association="Self.FK_PosjetilacKorisnik">
+            <End Role="Korisnik" EntitySet="Korisnik" />
+            <End Role="Posjetilac" EntitySet="Posjetilac" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model2" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AgeRange">
+          <Key>
+            <PropertyRef Name="AgeRangeID" />
+          </Key>
+          <Property Name="AgeRangeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Range" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Events" Relationship="Self.EventAgeRange" FromRole="AgeRange" ToRole="Event" />
+        </EntityType>
+        <EntityType Name="Drzava">
+          <Key>
+            <PropertyRef Name="DrzavaID" />
+          </Key>
+          <Property Name="DrzavaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Grads" Relationship="Self.FK__Grad__DrzavaID__398D8EEE" FromRole="Drzava" ToRole="Grad" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="EventID" />
+          </Key>
+          <Property Name="EventID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Opis" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="KreatorID" Type="Int32" Nullable="false" />
+          <Property Name="AverageRating" Type="Double" Nullable="false" />
+          <Property Name="DatumKreiranja" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DatumOdrzavanja" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="VrijemePocetka" Type="Time" Precision="7" />
+          <Property Name="VrijemeZavrsetka" Type="Time" Precision="7" />
+          <Property Name="Slika" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="SlikaThumb" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EventTipID" Type="Int32" Nullable="false" />
+          <Property Name="OrganizacijaID" Type="Int32" />
+          <Property Name="LokacijaID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="EventTip" Relationship="Self.FK__Event__EventTipI__30F848ED" FromRole="Event" ToRole="EventTip" />
+          <NavigationProperty Name="Korisnik" Relationship="Self.FK__Event__KreatorID__31EC6D26" FromRole="Event" ToRole="Korisnik" />
+          <NavigationProperty Name="Lokacija" Relationship="Self.FK__Event__LokacijaI__32E0915F" FromRole="Event" ToRole="Lokacija" />
+          <NavigationProperty Name="Organizacija" Relationship="Self.FK__Event__Organizac__33D4B598" FromRole="Event" ToRole="Organizacija" />
+          <NavigationProperty Name="EventGalleries" Relationship="Self.FK__EventGall__Event__36B12243" FromRole="Event" ToRole="EventGallery" />
+          <NavigationProperty Name="EventToVisits" Relationship="Self.FK__EventToVi__Event__37A5467C" FromRole="Event" ToRole="EventToVisit" />
+          <NavigationProperty Name="AgeRanges" Relationship="Self.EventAgeRange" FromRole="Event" ToRole="AgeRange" />
+        </EntityType>
+        <EntityType Name="EventGallery">
+          <Key>
+            <PropertyRef Name="EventGalleryID" />
+          </Key>
+          <Property Name="EventGalleryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Opis" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DatumKreiranja" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EventID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Event" Relationship="Self.FK__EventGall__Event__36B12243" FromRole="EventGallery" ToRole="Event" />
+          <NavigationProperty Name="Slikas" Relationship="Self.FK__Slika__EventGall__44FF419A" FromRole="EventGallery" ToRole="Slika" />
+        </EntityType>
+        <EntityType Name="EventTip">
+          <Key>
+            <PropertyRef Name="EventTipID" />
+          </Key>
+          <Property Name="EventTipID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Events" Relationship="Self.FK__Event__EventTipI__30F848ED" FromRole="EventTip" ToRole="Event" />
+        </EntityType>
+        <EntityType Name="EventToVisit">
+          <Key>
+            <PropertyRef Name="PosjetilacID" />
+            <PropertyRef Name="EventID" />
+          </Key>
+          <Property Name="PosjetilacID" Type="Int32" Nullable="false" />
+          <Property Name="EventID" Type="Int32" Nullable="false" />
+          <Property Name="Prisustvovao" Type="Boolean" />
+          <Property Name="EventRating" Type="Int32" />
+          <Property Name="RatingDate" Type="DateTime" Precision="3" />
+          <Property Name="Comment" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+          <Property Name="CommentDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Event" Relationship="Self.FK__EventToVi__Event__37A5467C" FromRole="EventToVisit" ToRole="Event" />
+          <NavigationProperty Name="Posjetilac" Relationship="Self.FK__EventToVi__Posje__38996AB5" FromRole="EventToVisit" ToRole="Posjetilac" />
+        </EntityType>
+        <EntityType Name="Grad">
+          <Key>
+            <PropertyRef Name="GradID" />
+          </Key>
+          <Property Name="GradID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DrzavaID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Drzava" Relationship="Self.FK__Grad__DrzavaID__398D8EEE" FromRole="Grad" ToRole="Drzava" />
+          <NavigationProperty Name="Korisniks" Relationship="Self.FK__Korisnik__GradID__3A81B327" FromRole="Grad" ToRole="Korisnik" />
+          <NavigationProperty Name="Lokacijas" Relationship="Self.FK__Lokacija__GradID__3D5E1FD2" FromRole="Grad" ToRole="Lokacija" />
+          <NavigationProperty Name="Organizacijas" Relationship="Self.FK__Organizac__GradI__3F466844" FromRole="Grad" ToRole="Organizacija" />
+        </EntityType>
+        <EntityType Name="Korisnik">
+          <Key>
+            <PropertyRef Name="KorisnikID" />
+          </Key>
+          <Property Name="KorisnikID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Prezime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Telefon" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="KorisnickoIme" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LozinkaHash" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LozinkaSalt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="Slika" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="SlikaThumb" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="GradID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Events" Relationship="Self.FK__Event__KreatorID__31EC6D26" FromRole="Korisnik" ToRole="Event" />
+          <NavigationProperty Name="Grad" Relationship="Self.FK__Korisnik__GradID__3A81B327" FromRole="Korisnik" ToRole="Grad" />
+          <NavigationProperty Name="KorisnikUlogas" Relationship="Self.FK__KorisnikU__Koris__3B75D760" FromRole="Korisnik" ToRole="KorisnikUloga" />
+          <NavigationProperty Name="Posjetilac" Relationship="Self.FK_PosjetilacKorisnik" FromRole="Korisnik" ToRole="Posjetilac" />
+        </EntityType>
+        <EntityType Name="KorisnikUloga">
+          <Key>
+            <PropertyRef Name="KorisnikUlogaID" />
+          </Key>
+          <Property Name="KorisnikUlogaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KorisnikID" Type="Int32" Nullable="false" />
+          <Property Name="UlogaID" Type="Int32" Nullable="false" />
+          <Property Name="DatumIzmjene" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Korisnik" Relationship="Self.FK__KorisnikU__Koris__3B75D760" FromRole="KorisnikUloga" ToRole="Korisnik" />
+          <NavigationProperty Name="Uloga" Relationship="Self.FK__KorisnikU__Uloga__3C69FB99" FromRole="KorisnikUloga" ToRole="Uloga" />
+        </EntityType>
+        <EntityType Name="Lokacija">
+          <Key>
+            <PropertyRef Name="LokacijaID" />
+          </Key>
+          <Property Name="LokacijaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Opis" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+          <Property Name="Kapacitet" Type="Int32" />
+          <Property Name="Adresa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Slika" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="SlikaThumb" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="AverageRating" Type="Double" />
+          <Property Name="GradID" Type="Int32" Nullable="false" />
+          <Property Name="LokacijaTipID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Events" Relationship="Self.FK__Event__LokacijaI__32E0915F" FromRole="Lokacija" ToRole="Event" />
+          <NavigationProperty Name="Grad" Relationship="Self.FK__Lokacija__GradID__3D5E1FD2" FromRole="Lokacija" ToRole="Grad" />
+          <NavigationProperty Name="LokacijaTip" Relationship="Self.FK__Lokacija__Lokaci__3E52440B" FromRole="Lokacija" ToRole="LokacijaTip" />
+          <NavigationProperty Name="PosjetilacLokacijas" Relationship="Self.FK__Posjetila__Lokac__412EB0B6" FromRole="Lokacija" ToRole="PosjetilacLokacija" />
+        </EntityType>
+        <EntityType Name="LokacijaTip">
+          <Key>
+            <PropertyRef Name="LokacijaTipID" />
+          </Key>
+          <Property Name="LokacijaTipID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Opis" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Lokacijas" Relationship="Self.FK__Lokacija__Lokaci__3E52440B" FromRole="LokacijaTip" ToRole="Lokacija" />
+        </EntityType>
+        <EntityType Name="Organizacija">
+          <Key>
+            <PropertyRef Name="OrganizacijaID" />
+          </Key>
+          <Property Name="OrganizacijaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Opis" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+          <Property Name="Tip" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SlikaLogo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="GradID" Type="Int32" Nullable="false" />
+          <Property Name="AverageRating" Type="Double" />
+          <NavigationProperty Name="Events" Relationship="Self.FK__Event__Organizac__33D4B598" FromRole="Organizacija" ToRole="Event" />
+          <NavigationProperty Name="Grad" Relationship="Self.FK__Organizac__GradI__3F466844" FromRole="Organizacija" ToRole="Grad" />
+          <NavigationProperty Name="PosjetilacOrganizacijas" Relationship="Self.FK__Posjetila__Organ__4316F928" FromRole="Organizacija" ToRole="PosjetilacOrganizacija" />
+        </EntityType>
+        <EntityType Name="Posjetilac">
+          <Key>
+            <PropertyRef Name="PosjetilacID" />
+          </Key>
+          <Property Name="PosjetilacID" Type="Int32" Nullable="false" />
+          <Property Name="BrojPosjecenihDogadjaja" Type="Int32" />
+          <Property Name="Zanimanje" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="EventToVisits" Relationship="Self.FK__EventToVi__Posje__38996AB5" FromRole="Posjetilac" ToRole="EventToVisit" />
+          <NavigationProperty Name="Korisnik" Relationship="Self.FK_PosjetilacKorisnik" FromRole="Posjetilac" ToRole="Korisnik" />
+          <NavigationProperty Name="PosjetilacLokacijas" Relationship="Self.FK__Posjetila__Posje__4222D4EF" FromRole="Posjetilac" ToRole="PosjetilacLokacija" />
+          <NavigationProperty Name="PosjetilacOrganizacijas" Relationship="Self.FK__Posjetila__Posje__440B1D61" FromRole="Posjetilac" ToRole="PosjetilacOrganizacija" />
+        </EntityType>
+        <EntityType Name="PosjetilacLokacija">
+          <Key>
+            <PropertyRef Name="PosjetilacID" />
+            <PropertyRef Name="LokacijaID" />
+          </Key>
+          <Property Name="PosjetilacID" Type="Int32" Nullable="false" />
+          <Property Name="LokacijaID" Type="Int32" Nullable="false" />
+          <Property Name="LocationRating" Type="Int32" />
+          <Property Name="RatingDate" Type="DateTime" Precision="3" />
+          <Property Name="Comment" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+          <Property Name="CommentDate" Type="DateTime" Precision="3" />
+          <Property Name="IsFavorite" Type="Boolean" />
+          <NavigationProperty Name="Lokacija" Relationship="Self.FK__Posjetila__Lokac__412EB0B6" FromRole="PosjetilacLokacija" ToRole="Lokacija" />
+          <NavigationProperty Name="Posjetilac" Relationship="Self.FK__Posjetila__Posje__4222D4EF" FromRole="PosjetilacLokacija" ToRole="Posjetilac" />
+        </EntityType>
+        <EntityType Name="PosjetilacOrganizacija">
+          <Key>
+            <PropertyRef Name="PosjetilacID" />
+            <PropertyRef Name="OrganizacijaID" />
+          </Key>
+          <Property Name="PosjetilacID" Type="Int32" Nullable="false" />
+          <Property Name="OrganizacijaID" Type="Int32" Nullable="false" />
+          <Property Name="LocationRating" Type="Int32" />
+          <Property Name="RatingDate" Type="DateTime" Precision="3" />
+          <Property Name="Comment" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+          <Property Name="CommentDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Organizacija" Relationship="Self.FK__Posjetila__Organ__4316F928" FromRole="PosjetilacOrganizacija" ToRole="Organizacija" />
+          <NavigationProperty Name="Posjetilac" Relationship="Self.FK__Posjetila__Posje__440B1D61" FromRole="PosjetilacOrganizacija" ToRole="Posjetilac" />
+        </EntityType>
+        <EntityType Name="Slika">
+          <Key>
+            <PropertyRef Name="SlikaID" />
+          </Key>
+          <Property Name="SlikaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventGalleryID" Type="Int32" Nullable="false" />
+          <Property Name="Slika1" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="SlikaThumb" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="Opis" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="EventGallery" Relationship="Self.FK__Slika__EventGall__44FF419A" FromRole="Slika" ToRole="EventGallery" />
+        </EntityType>
+        <EntityType Name="Uloga">
+          <Key>
+            <PropertyRef Name="UlogaID" />
+          </Key>
+          <Property Name="UlogaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Opis" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="KorisnikUlogas" Relationship="Self.FK__KorisnikU__Uloga__3C69FB99" FromRole="Uloga" ToRole="KorisnikUloga" />
+        </EntityType>
+        <Association Name="FK__Grad__DrzavaID__398D8EEE">
+          <End Role="Drzava" Type="Self.Drzava" Multiplicity="1" />
+          <End Role="Grad" Type="Self.Grad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Drzava">
+              <PropertyRef Name="DrzavaID" />
+            </Principal>
+            <Dependent Role="Grad">
+              <PropertyRef Name="DrzavaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Event__EventTipI__30F848ED">
+          <End Role="EventTip" Type="Self.EventTip" Multiplicity="1" />
+          <End Role="Event" Type="Self.Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EventTip">
+              <PropertyRef Name="EventTipID" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="EventTipID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Event__KreatorID__31EC6D26">
+          <End Role="Korisnik" Type="Self.Korisnik" Multiplicity="1" />
+          <End Role="Event" Type="Self.Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Korisnik">
+              <PropertyRef Name="KorisnikID" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="KreatorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Event__LokacijaI__32E0915F">
+          <End Role="Lokacija" Type="Self.Lokacija" Multiplicity="1" />
+          <End Role="Event" Type="Self.Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lokacija">
+              <PropertyRef Name="LokacijaID" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="LokacijaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Event__Organizac__33D4B598">
+          <End Role="Organizacija" Type="Self.Organizacija" Multiplicity="0..1" />
+          <End Role="Event" Type="Self.Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organizacija">
+              <PropertyRef Name="OrganizacijaID" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="OrganizacijaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EventGall__Event__36B12243">
+          <End Role="Event" Type="Self.Event" Multiplicity="1" />
+          <End Role="EventGallery" Type="Self.EventGallery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="EventGallery">
+              <PropertyRef Name="EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EventToVi__Event__37A5467C">
+          <End Role="Event" Type="Self.Event" Multiplicity="1" />
+          <End Role="EventToVisit" Type="Self.EventToVisit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="EventToVisit">
+              <PropertyRef Name="EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Slika__EventGall__44FF419A">
+          <End Role="EventGallery" Type="Self.EventGallery" Multiplicity="1" />
+          <End Role="Slika" Type="Self.Slika" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EventGallery">
+              <PropertyRef Name="EventGalleryID" />
+            </Principal>
+            <Dependent Role="Slika">
+              <PropertyRef Name="EventGalleryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EventToVi__Posje__38996AB5">
+          <End Role="Posjetilac" Type="Self.Posjetilac" Multiplicity="1" />
+          <End Role="EventToVisit" Type="Self.EventToVisit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Posjetilac">
+              <PropertyRef Name="PosjetilacID" />
+            </Principal>
+            <Dependent Role="EventToVisit">
+              <PropertyRef Name="PosjetilacID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Korisnik__GradID__3A81B327">
+          <End Role="Grad" Type="Self.Grad" Multiplicity="1" />
+          <End Role="Korisnik" Type="Self.Korisnik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grad">
+              <PropertyRef Name="GradID" />
+            </Principal>
+            <Dependent Role="Korisnik">
+              <PropertyRef Name="GradID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Lokacija__GradID__3D5E1FD2">
+          <End Role="Grad" Type="Self.Grad" Multiplicity="1" />
+          <End Role="Lokacija" Type="Self.Lokacija" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grad">
+              <PropertyRef Name="GradID" />
+            </Principal>
+            <Dependent Role="Lokacija">
+              <PropertyRef Name="GradID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Organizac__GradI__3F466844">
+          <End Role="Grad" Type="Self.Grad" Multiplicity="1" />
+          <End Role="Organizacija" Type="Self.Organizacija" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grad">
+              <PropertyRef Name="GradID" />
+            </Principal>
+            <Dependent Role="Organizacija">
+              <PropertyRef Name="GradID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__KorisnikU__Koris__3B75D760">
+          <End Role="Korisnik" Type="Self.Korisnik" Multiplicity="1" />
+          <End Role="KorisnikUloga" Type="Self.KorisnikUloga" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Korisnik">
+              <PropertyRef Name="KorisnikID" />
+            </Principal>
+            <Dependent Role="KorisnikUloga">
+              <PropertyRef Name="KorisnikID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PosjetilacKorisnik">
+          <End Role="Korisnik" Type="Self.Korisnik" Multiplicity="1" />
+          <End Role="Posjetilac" Type="Self.Posjetilac" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Korisnik">
+              <PropertyRef Name="KorisnikID" />
+            </Principal>
+            <Dependent Role="Posjetilac">
+              <PropertyRef Name="PosjetilacID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__KorisnikU__Uloga__3C69FB99">
+          <End Role="Uloga" Type="Self.Uloga" Multiplicity="1" />
+          <End Role="KorisnikUloga" Type="Self.KorisnikUloga" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uloga">
+              <PropertyRef Name="UlogaID" />
+            </Principal>
+            <Dependent Role="KorisnikUloga">
+              <PropertyRef Name="UlogaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Lokacija__Lokaci__3E52440B">
+          <End Role="LokacijaTip" Type="Self.LokacijaTip" Multiplicity="1" />
+          <End Role="Lokacija" Type="Self.Lokacija" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LokacijaTip">
+              <PropertyRef Name="LokacijaTipID" />
+            </Principal>
+            <Dependent Role="Lokacija">
+              <PropertyRef Name="LokacijaTipID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Posjetila__Lokac__412EB0B6">
+          <End Role="Lokacija" Type="Self.Lokacija" Multiplicity="1" />
+          <End Role="PosjetilacLokacija" Type="Self.PosjetilacLokacija" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lokacija">
+              <PropertyRef Name="LokacijaID" />
+            </Principal>
+            <Dependent Role="PosjetilacLokacija">
+              <PropertyRef Name="LokacijaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Posjetila__Organ__4316F928">
+          <End Role="Organizacija" Type="Self.Organizacija" Multiplicity="1" />
+          <End Role="PosjetilacOrganizacija" Type="Self.PosjetilacOrganizacija" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organizacija">
+              <PropertyRef Name="OrganizacijaID" />
+            </Principal>
+            <Dependent Role="PosjetilacOrganizacija">
+              <PropertyRef Name="OrganizacijaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Posjetila__Posje__4222D4EF">
+          <End Role="Posjetilac" Type="Self.Posjetilac" Multiplicity="1" />
+          <End Role="PosjetilacLokacija" Type="Self.PosjetilacLokacija" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Posjetilac">
+              <PropertyRef Name="PosjetilacID" />
+            </Principal>
+            <Dependent Role="PosjetilacLokacija">
+              <PropertyRef Name="PosjetilacID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Posjetila__Posje__440B1D61">
+          <End Role="Posjetilac" Type="Self.Posjetilac" Multiplicity="1" />
+          <End Role="PosjetilacOrganizacija" Type="Self.PosjetilacOrganizacija" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Posjetilac">
+              <PropertyRef Name="PosjetilacID" />
+            </Principal>
+            <Dependent Role="PosjetilacOrganizacija">
+              <PropertyRef Name="PosjetilacID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="EventAgeRange">
+          <End Role="AgeRange" Type="Self.AgeRange" Multiplicity="*" />
+          <End Role="Event" Type="Self.Event" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="LocalEventsEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AgeRanges" EntityType="Self.AgeRange" />
+          <EntitySet Name="Drzavas" EntityType="Self.Drzava" />
+          <EntitySet Name="Events" EntityType="Self.Event" />
+          <EntitySet Name="EventGalleries" EntityType="Self.EventGallery" />
+          <EntitySet Name="EventTips" EntityType="Self.EventTip" />
+          <EntitySet Name="EventToVisits" EntityType="Self.EventToVisit" />
+          <EntitySet Name="Grads" EntityType="Self.Grad" />
+          <EntitySet Name="Korisniks" EntityType="Self.Korisnik" />
+          <EntitySet Name="KorisnikUlogas" EntityType="Self.KorisnikUloga" />
+          <EntitySet Name="Lokacijas" EntityType="Self.Lokacija" />
+          <EntitySet Name="LokacijaTips" EntityType="Self.LokacijaTip" />
+          <EntitySet Name="Organizacijas" EntityType="Self.Organizacija" />
+          <EntitySet Name="Posjetilacs" EntityType="Self.Posjetilac" />
+          <EntitySet Name="PosjetilacLokacijas" EntityType="Self.PosjetilacLokacija" />
+          <EntitySet Name="PosjetilacOrganizacijas" EntityType="Self.PosjetilacOrganizacija" />
+          <EntitySet Name="Slikas" EntityType="Self.Slika" />
+          <EntitySet Name="Ulogas" EntityType="Self.Uloga" />
+          <AssociationSet Name="FK__Grad__DrzavaID__398D8EEE" Association="Self.FK__Grad__DrzavaID__398D8EEE">
+            <End Role="Drzava" EntitySet="Drzavas" />
+            <End Role="Grad" EntitySet="Grads" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Event__EventTipI__30F848ED" Association="Self.FK__Event__EventTipI__30F848ED">
+            <End Role="EventTip" EntitySet="EventTips" />
+            <End Role="Event" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Event__KreatorID__31EC6D26" Association="Self.FK__Event__KreatorID__31EC6D26">
+            <End Role="Korisnik" EntitySet="Korisniks" />
+            <End Role="Event" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Event__LokacijaI__32E0915F" Association="Self.FK__Event__LokacijaI__32E0915F">
+            <End Role="Lokacija" EntitySet="Lokacijas" />
+            <End Role="Event" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Event__Organizac__33D4B598" Association="Self.FK__Event__Organizac__33D4B598">
+            <End Role="Organizacija" EntitySet="Organizacijas" />
+            <End Role="Event" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EventGall__Event__36B12243" Association="Self.FK__EventGall__Event__36B12243">
+            <End Role="Event" EntitySet="Events" />
+            <End Role="EventGallery" EntitySet="EventGalleries" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EventToVi__Event__37A5467C" Association="Self.FK__EventToVi__Event__37A5467C">
+            <End Role="Event" EntitySet="Events" />
+            <End Role="EventToVisit" EntitySet="EventToVisits" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Slika__EventGall__44FF419A" Association="Self.FK__Slika__EventGall__44FF419A">
+            <End Role="EventGallery" EntitySet="EventGalleries" />
+            <End Role="Slika" EntitySet="Slikas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EventToVi__Posje__38996AB5" Association="Self.FK__EventToVi__Posje__38996AB5">
+            <End Role="Posjetilac" EntitySet="Posjetilacs" />
+            <End Role="EventToVisit" EntitySet="EventToVisits" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Korisnik__GradID__3A81B327" Association="Self.FK__Korisnik__GradID__3A81B327">
+            <End Role="Grad" EntitySet="Grads" />
+            <End Role="Korisnik" EntitySet="Korisniks" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Lokacija__GradID__3D5E1FD2" Association="Self.FK__Lokacija__GradID__3D5E1FD2">
+            <End Role="Grad" EntitySet="Grads" />
+            <End Role="Lokacija" EntitySet="Lokacijas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Organizac__GradI__3F466844" Association="Self.FK__Organizac__GradI__3F466844">
+            <End Role="Grad" EntitySet="Grads" />
+            <End Role="Organizacija" EntitySet="Organizacijas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__KorisnikU__Koris__3B75D760" Association="Self.FK__KorisnikU__Koris__3B75D760">
+            <End Role="Korisnik" EntitySet="Korisniks" />
+            <End Role="KorisnikUloga" EntitySet="KorisnikUlogas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PosjetilacKorisnik" Association="Self.FK_PosjetilacKorisnik">
+            <End Role="Korisnik" EntitySet="Korisniks" />
+            <End Role="Posjetilac" EntitySet="Posjetilacs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__KorisnikU__Uloga__3C69FB99" Association="Self.FK__KorisnikU__Uloga__3C69FB99">
+            <End Role="Uloga" EntitySet="Ulogas" />
+            <End Role="KorisnikUloga" EntitySet="KorisnikUlogas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Lokacija__Lokaci__3E52440B" Association="Self.FK__Lokacija__Lokaci__3E52440B">
+            <End Role="LokacijaTip" EntitySet="LokacijaTips" />
+            <End Role="Lokacija" EntitySet="Lokacijas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Posjetila__Lokac__412EB0B6" Association="Self.FK__Posjetila__Lokac__412EB0B6">
+            <End Role="Lokacija" EntitySet="Lokacijas" />
+            <End Role="PosjetilacLokacija" EntitySet="PosjetilacLokacijas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Posjetila__Organ__4316F928" Association="Self.FK__Posjetila__Organ__4316F928">
+            <End Role="Organizacija" EntitySet="Organizacijas" />
+            <End Role="PosjetilacOrganizacija" EntitySet="PosjetilacOrganizacijas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Posjetila__Posje__4222D4EF" Association="Self.FK__Posjetila__Posje__4222D4EF">
+            <End Role="Posjetilac" EntitySet="Posjetilacs" />
+            <End Role="PosjetilacLokacija" EntitySet="PosjetilacLokacijas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Posjetila__Posje__440B1D61" Association="Self.FK__Posjetila__Posje__440B1D61">
+            <End Role="Posjetilac" EntitySet="Posjetilacs" />
+            <End Role="PosjetilacOrganizacija" EntitySet="PosjetilacOrganizacijas" />
+          </AssociationSet>
+          <AssociationSet Name="EventAgeRange" Association="Self.EventAgeRange">
+            <End Role="AgeRange" EntitySet="AgeRanges" />
+            <End Role="Event" EntitySet="Events" />
+          </AssociationSet>
+          <FunctionImport Name="GetSlikaByID" ReturnType="Collection(Model2.GetSlikaByID_Result)">
+          <Parameter Name="SlikaID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="esp_AgeRange_SelectAll" ReturnType="Collection(Model2.esp_AgeRange_SelectAll_Result)" />
+          <FunctionImport Name="esp_EventAgeRange_GetByEvent" ReturnType="Collection(Model2.esp_EventAgeRange_GetByEvent_Result)">
+          <Parameter Name="EventID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="esp_EventAgeRange_Insert" ReturnType="Collection(Decimal)">
+            <Parameter Name="AgeRangeID" Mode="In" Type="Int32" />
+            <Parameter Name="EventID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="esp_EventGallery_GetByEvent" ReturnType="Collection(Model2.esp_EventGallery_GetByEvent_Result)">
+          <Parameter Name="EventID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="esp_EventGallery_GetByID" ReturnType="Collection(Model2.esp_EventGallery_GetByID_Result)">
+          <Parameter Name="EventGalleryID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="esp_EventGallery_Insert" ReturnType="Collection(Decimal)">
+            <Parameter Name="EventID" Mode="In" Type="Int32" />
+            <Parameter Name="Naziv" Mode="In" Type="String" />
+            <Parameter Name="Opis" Mode="In" Type="String" />
+            <Parameter Name="DatumKreiranja" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="esp_EventGallery_Update">
+            <Parameter Name="EventGalleryID" Mode="In" Type="Int32" />
+            <Parameter Name="Naziv" Mode="In" Type="String" />
+            <Parameter Name="Opis" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="esp_EventTip_SelectAll" ReturnType="Collection(Model2.esp_EventTip_SelectAll_Result)" />
+          <FunctionImport Name="esp_EventToVisit_GetByPosjetilacID" ReturnType="Collection(Model2.esp_EventToVisit_GetByPosjetilacID_Result)">
+          <Parameter Name="PosjetilacID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="esp_EventToVisit_GetDetails" ReturnType="Collection(Model2.esp_EventToVisit_GetDetails_Result)">
+            <Parameter Name="PosjetilacID" Mode="In" Type="Int32" />
+            <Parameter Name="EventID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="esp_EventToVisit_Remove">
+            <Parameter Name="EventID" Mode="In" Type="Int32" />
+            <Parameter Name="PosjetilacID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="esp_EventToVisit_UpdateAll">
+            <Parameter Name="PosjetilacID" Mode="In" Type="Int32" />
+            <Parameter Name="EventID" Mode="In" Type="Int32" />
+            <Parameter Name="Comment" Mode="In" Type="String" />
+            <Parameter Name="Rating" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="esp_EventToVisit_UpdateComment">
+            <Parameter Name="PosjetilacID" Mode="In" Type="Int32" />
+            <Parameter Name="EventID" Mode="In" Type="Int32" />
+            <Parameter Name="Comment" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="esp_EventToVisit_UpdateRating">
+            <Parameter Name="PosjetilacID" Mode="In" Type="Int32" />
+            <Parameter Name="EventID" Mode="In" Type="Int32" />
+            <Parameter Name="Rating" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="esp_Event_GetByEventTip" ReturnType="Collection(Model2.esp_Event_GetByEventTip_Result)">
+          <Parameter Name="EventTipID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="esp_Event_GetByID" ReturnType="Collection(Model2.esp_Event_GetByID_Result)">
+          <Parameter Name="EventID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="esp_Event_GetComments" ReturnType="Collection(Model2.esp_Event_GetComments_Result)">
+          <Parameter Name="EventID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="esp_Event_GetDetails" ReturnType="Collection(Model2.esp_Event_GetDetails_Result)">
+          <Parameter Name="EventID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="esp_Event_GetEvents" ReturnType="Collection(Model2.esp_Event_GetEvents_Result)">
+          <Parameter Name="Naziv" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="esp_Event_Insert" ReturnType="Collection(Decimal)">
+            <Parameter Name="KreatorID" Mode="In" Type="Int32" />
+            <Parameter Name="Naziv" Mode="In" Type="String" />
+            <Parameter Name="Opis" Mode="In" Type="String" />
+            <Parameter Name="DatumKreiranja" Mode="In" Type="DateTime" />
+            <Parameter Name="DatumOdrzavanja" Mode="In" Type="DateTime" />
+            <Parameter Name="VrijemePocetka" Mode="In" Type="Time" />
+            <Parameter Name="VrijemeZavrsetka" Mode="In" Type="Time" />
+            <Parameter Name="Slika" Mode="In" Type="Binary" />
+            <Parameter Name="SlikaThumb" Mode="In" Type="Binary" />
+            <Parameter Name="Status" Mode="In" Type="String" />
+            <Parameter Name="EventTipID" Mode="In" Type="Int32" />
+            <Parameter Name="OrganizacijaID" Mode="In" Type="Int32" />
+            <Parameter Name="LokacijaID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="esp_Event_OrderByDatum" ReturnType="Collection(Model2.esp_Event_OrderByDatum_Result)" />
+          <FunctionImport Name="esp_Event_OrderByLokacija" ReturnType="Collection(Model2.esp_Event_OrderByLokacija_Result)" />
+          <FunctionImport Name="esp_Event_ToVisit">
+            <Parameter Name="EventID" Mode="In" Type="Int32" />
+            <Parameter Name="PosjetilacID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="esp_Event_Top5ByGradMjesec" ReturnType="Collection(Model2.esp_Event_Top5ByGradMjesec_Result)">
+            <Parameter Name="GradID" Mode="In" Type="Int32" />
+            <Parameter Name="Mjesec" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="esp_Event_Update">
+            <Parameter Name="EventID" Mode="In" Type="Int32" />
+            <Parameter Name="Naziv" Mode="In" Type="String" />
+            <Parameter Name="Opis" Mode="In" Type="String" />
+            <Parameter Name="LokacijaID" Mode="In" Type="Int32" />
+            <Parameter Name="OrganizacijaID" Mode="In" Type="Int32" />
+            <Parameter Name="EventTipID" Mode="In" Type="Int32" />
+            <Parameter Name="VrijemePocetka" Mode="In" Type="Time" />
+            <Parameter Name="VrijemeZavrsetka" Mode="In" Type="Time" />
+            <Parameter Name="DatumOdrzavanja" Mode="In" Type="DateTime" />
+            <Parameter Name="Status" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="esp_Event_UpdateStatus">
+            <Parameter Name="Status" Mode="In" Type="String" />
+            <Parameter Name="EventID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="esp_Events_Insert" ReturnType="Collection(Decimal)">
+            <Parameter Name="Naziv" Mode="In" Type="String" />
+            <Parameter Name="Opis" Mode="In" Type="String" />
+            <Parameter Name="KreatorID" Mode="In" Type="Int32" />
+            <Parameter Name="DatumKreiranja" Mode="In" Type="DateTime" />
+            <Parameter Name="DatumOdrzavanja" Mode="In" Type="DateTime" />
+            <Parameter Name="VrijemePocetka" Mode="In" Type="Time" />
+            <Parameter Name="VrijemeZavrsetka" Mode="In" Type="Time" />
+            <Parameter Name="Slika" Mode="In" Type="Binary" />
+            <Parameter Name="SlikaThumb" Mode="In" Type="Binary" />
+            <Parameter Name="Status" Mode="In" Type="String" />
+            <Parameter Name="EventTipID" Mode="In" Type="Int32" />
+            <Parameter Name="OrganizacijaID" Mode="In" Type="Int32" />
+            <Parameter Name="LokacijaID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="esp_Events_SelectAll" ReturnType="Collection(Model2.esp_Events_SelectAll_Result)" />
+          <FunctionImport Name="esp_Grad_SelectAll" ReturnType="Collection(Model2.esp_Grad_SelectAll_Result)" />
+          <FunctionImport Name="esp_Korisnik_GetByID" ReturnType="Collection(Model2.esp_Korisnik_GetByID_Result)">
+          <Parameter Name="KorisnikID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="esp_Korisnik_GetByKorisnickoIme" ReturnType="Collection(Model2.esp_Korisnik_GetByKorisnickoIme_Result)">
+          <Parameter Name="KorisnickoIme" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="esp_Korisnik_GetByUsername" ReturnType="Collection(Model2.esp_Korisnik_GetByUsername_Result)">
+          <Parameter Name="KorisnickoIme" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="esp_Korisnik_Insert" ReturnType="Collection(Decimal)">
+            <Parameter Name="Ime" Mode="In" Type="String" />
+            <Parameter Name="Prezime" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="Telefon" Mode="In" Type="String" />
+            <Parameter Name="KorisnickoIme" Mode="In" Type="String" />
+            <Parameter Name="LozinkaSalt" Mode="In" Type="String" />
+            <Parameter Name="LozinkaHash" Mode="In" Type="String" />
+            <Parameter Name="GradID" Mode="In" Type="Int32" />
+            <Parameter Name="Slika" Mode="In" Type="Binary" />
+            <Parameter Name="SlikaThumb" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="esp_Korisnik_SelectAll" ReturnType="Collection(Model2.esp_Korisnik_SelectAll_Result)" />
+          <FunctionImport Name="esp_Korisnik_SelectByImePrezime" ReturnType="Collection(Model2.esp_Korisnik_SelectByImePrezime_Result)">
+          <Parameter Name="ImePrezime" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="esp_Korisnik_Update">
+            <Parameter Name="KorisnikID" Mode="In" Type="Int32" />
+            <Parameter Name="Ime" Mode="In" Type="String" />
+            <Parameter Name="Prezime" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="Telefon" Mode="In" Type="String" />
+            <Parameter Name="KorisnickoIme" Mode="In" Type="String" />
+            <Parameter Name="LozinkaSalt" Mode="In" Type="String" />
+            <Parameter Name="LozinkaHash" Mode="In" Type="String" />
+            <Parameter Name="Status" Mode="In" Type="Boolean" />
+            <Parameter Name="GradID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="esp_LokacijaTip_SelectAll" ReturnType="Collection(Model2.esp_LokacijaTip_SelectAll_Result)" />
+          <FunctionImport Name="esp_Lokacija_GetByID" ReturnType="Collection(Model2.esp_Lokacija_GetByID_Result)">
+          <Parameter Name="LokacijaID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="esp_Lokacija_GetComments" ReturnType="Collection(Model2.esp_Lokacija_GetComments_Result)">
+          <Parameter Name="LokacijaID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="esp_Lokacija_GetFavoriteLokacijas" ReturnType="Collection(Model2.esp_Lokacija_GetFavoriteLokacijas_Result)">
+          <Parameter Name="PosjetilacID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="esp_Lokacija_GetLokacijaList" ReturnType="Collection(Model2.esp_Lokacija_GetLokacijaList_Result)" />
+          <FunctionImport Name="esp_Lokacija_GetTop5ByGrad" ReturnType="Collection(Model2.esp_Lokacija_GetTop5ByGrad_Result)">
+          <Parameter Name="GradID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="esp_Lokacija_Input" ReturnType="Collection(Decimal)">
+            <Parameter Name="Naziv" Mode="In" Type="String" />
+            <Parameter Name="Opis" Mode="In" Type="String" />
+            <Parameter Name="Kapacitet" Mode="In" Type="Int32" />
+            <Parameter Name="Adresa" Mode="In" Type="String" />
+            <Parameter Name="Slika" Mode="In" Type="Binary" />
+            <Parameter Name="SlikaThumb" Mode="In" Type="Binary" />
+            <Parameter Name="AverageRating" Mode="In" Type="Double" />
+            <Parameter Name="GradID" Mode="In" Type="Int32" />
+            <Parameter Name="LokacijaTipID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="esp_Lokacija_SelectAll" ReturnType="Collection(Model2.esp_Lokacija_SelectAll_Result)">
+          <Parameter Name="Naziv" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="esp_Lokacija_Update">
+            <Parameter Name="LokacijaID" Mode="In" Type="Int32" />
+            <Parameter Name="Naziv" Mode="In" Type="String" />
+            <Parameter Name="Opis" Mode="In" Type="String" />
+            <Parameter Name="Kapacitet" Mode="In" Type="Int32" />
+            <Parameter Name="Adresa" Mode="In" Type="String" />
+            <Parameter Name="GradID" Mode="In" Type="Int32" />
+            <Parameter Name="LokacijaTipID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="esp_Organizacija_GetByID" ReturnType="Collection(Model2.esp_Organizacija_GetByID_Result)">
+          <Parameter Name="OrganizacijaID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="esp_Organizacija_GetComments" ReturnType="Collection(Model2.esp_Organizacija_GetComments_Result)">
+          <Parameter Name="OrganizacijaID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="esp_Organizacija_Insert" ReturnType="Collection(Decimal)">
+            <Parameter Name="Naziv" Mode="In" Type="String" />
+            <Parameter Name="Opis" Mode="In" Type="String" />
+            <Parameter Name="Tip" Mode="In" Type="String" />
+            <Parameter Name="GradID" Mode="In" Type="Int32" />
+            <Parameter Name="SlikaLogo" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="esp_Organizacija_SelectAll" ReturnType="Collection(Model2.esp_Organizacija_SelectAll_Result)">
+          <Parameter Name="Naziv" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="esp_Organizacija_Update">
+            <Parameter Name="OrganizacijaID" Mode="In" Type="Int32" />
+            <Parameter Name="Naziv" Mode="In" Type="String" />
+            <Parameter Name="Opis" Mode="In" Type="String" />
+            <Parameter Name="Tip" Mode="In" Type="String" />
+            <Parameter Name="GradID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="esp_PosjetilacLokacija_GetByID" ReturnType="Collection(Model2.esp_PosjetilacLokacija_GetByID_Result)">
+            <Parameter Name="PosjetilacID" Mode="In" Type="Int32" />
+            <Parameter Name="LokacijaID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="esp_PosjetilacLokacija_Insert">
+            <Parameter Name="PosjetilacID" Mode="In" Type="Int32" />
+            <Parameter Name="LokacijaID" Mode="In" Type="Int32" />
+            <Parameter Name="LocationRating" Mode="In" Type="Int32" />
+            <Parameter Name="Comment" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="esp_PosjetilacLokacija_UpdateAll">
+            <Parameter Name="PosjetilacID" Mode="In" Type="Int32" />
+            <Parameter Name="LokacijaID" Mode="In" Type="Int32" />
+            <Parameter Name="Comment" Mode="In" Type="String" />
+            <Parameter Name="Rating" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="esp_PosjetilacLokacija_UpdateComment">
+            <Parameter Name="PosjetilacID" Mode="In" Type="Int32" />
+            <Parameter Name="LokacijaID" Mode="In" Type="Int32" />
+            <Parameter Name="Comment" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="esp_PosjetilacLokacija_UpdateFavoriteStatus">
+            <Parameter Name="PosjetilacID" Mode="In" Type="Int32" />
+            <Parameter Name="LokacijaID" Mode="In" Type="Int32" />
+            <Parameter Name="IsFavorite" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="esp_PosjetilacLokacija_UpdateRating">
+            <Parameter Name="PosjetilacID" Mode="In" Type="Int32" />
+            <Parameter Name="LokacijaID" Mode="In" Type="Int32" />
+            <Parameter Name="LokacijaRating" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="esp_PosjetilacOrganizacija_GetByID" ReturnType="Collection(Model2.esp_PosjetilacOrganizacija_GetByID_Result)">
+            <Parameter Name="PosjetilacID" Mode="In" Type="Int32" />
+            <Parameter Name="OrganizacijaID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="esp_PosjetilacOrganizacija_Insert">
+            <Parameter Name="PosjetilacID" Mode="In" Type="Int32" />
+            <Parameter Name="OrganizacijaID" Mode="In" Type="Int32" />
+            <Parameter Name="LocationRating" Mode="In" Type="Int32" />
+            <Parameter Name="Comment" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="esp_PosjetilacOrganizacija_UpdateAll">
+            <Parameter Name="PosjetilacID" Mode="In" Type="Int32" />
+            <Parameter Name="OrganizacijaID" Mode="In" Type="Int32" />
+            <Parameter Name="Comment" Mode="In" Type="String" />
+            <Parameter Name="Rating" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="esp_PosjetilacOrganizacija_UpdateComment">
+            <Parameter Name="PosjetilacID" Mode="In" Type="Int32" />
+            <Parameter Name="OrganizacijaID" Mode="In" Type="Int32" />
+            <Parameter Name="Comment" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="esp_PosjetilacOrganizacija_UpdateRating">
+            <Parameter Name="PosjetilacID" Mode="In" Type="Int32" />
+            <Parameter Name="OrganizacijaID" Mode="In" Type="Int32" />
+            <Parameter Name="Rating" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="esp_Posjetilac_GetByID" ReturnType="Collection(Model2.esp_Posjetilac_GetByID_Result)">
+          <Parameter Name="PosjetilacID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="esp_Slika_GetByGallery" ReturnType="Collection(Model2.esp_Slika_GetByGallery_Result)">
+          <Parameter Name="EventGalleryID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="esp_Slika_Insert" ReturnType="Collection(Decimal)">
+            <Parameter Name="EventGalleryID" Mode="In" Type="Int32" />
+            <Parameter Name="Slika" Mode="In" Type="Binary" />
+            <Parameter Name="SlikaThumb" Mode="In" Type="Binary" />
+            <Parameter Name="Opis" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="esp_Slika_Update">
+            <Parameter Name="SlikaID" Mode="In" Type="Int32" />
+            <Parameter Name="Opis" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="esp_Uloga_SelectAll" ReturnType="Collection(Model2.esp_Uloga_SelectAll_Result)" />
+          <FunctionImport Name="esp_Event_GetReport" ReturnType="Collection(Model2.esp_Event_GetReport_Result)">
+            <Parameter Name="EventID" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="GetSlikaByID_Result">
+          <Property Type="Int32" Name="SlikaID" Nullable="false" />
+          <Property Type="Int32" Name="EventGalleryID" Nullable="false" />
+          <Property Type="Binary" Name="Slika" Nullable="false" />
+          <Property Type="Binary" Name="SlikaThumb" Nullable="false" />
+          <Property Type="String" Name="Opis" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="esp_AgeRange_SelectAll_Result">
+          <Property Type="Int32" Name="AgeRangeID" Nullable="false" />
+          <Property Type="String" Name="Range" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="esp_EventAgeRange_GetByEvent_Result">
+          <Property Type="Int32" Name="AgeRangeID" Nullable="false" />
+          <Property Type="String" Name="Range" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="esp_EventGallery_GetByEvent_Result">
+          <Property Type="Int32" Name="EventGalleryID" Nullable="false" />
+          <Property Type="String" Name="Naziv" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Opis" Nullable="false" MaxLength="3000" />
+          <Property Type="DateTime" Name="DatumKreiranja" Nullable="false" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="esp_EventGallery_GetByID_Result">
+          <Property Type="Int32" Name="EventGalleryID" Nullable="false" />
+          <Property Type="Int32" Name="EventID" Nullable="false" />
+          <Property Type="String" Name="Naziv" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Opis" Nullable="false" MaxLength="3000" />
+          <Property Type="DateTime" Name="DatumKreiranja" Nullable="false" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="esp_EventTip_SelectAll_Result">
+          <Property Type="Int32" Name="EventTipID" Nullable="false" />
+          <Property Type="String" Name="Naziv" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="esp_EventToVisit_GetByPosjetilacID_Result">
+          <Property Type="Int32" Name="EventID" Nullable="false" />
+          <Property Type="String" Name="EventNaziv" Nullable="false" MaxLength="50" />
+          <Property Type="Binary" Name="SlikaThumb" Nullable="true" />
+          <Property Type="DateTime" Name="DatumOdrzavanja" Nullable="true" />
+          <Property Type="String" Name="LokacijaNaziv" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Status" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="esp_EventToVisit_GetDetails_Result">
+          <Property Type="Int32" Name="EventID" Nullable="false" />
+          <Property Type="Int32" Name="PosjetilacID" Nullable="false" />
+          <Property Type="Boolean" Name="Prisustvovao" Nullable="true" />
+          <Property Type="Int32" Name="EventRating" Nullable="true" />
+          <Property Type="DateTime" Name="RatingDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Comment" Nullable="true" MaxLength="3000" />
+          <Property Type="DateTime" Name="CommentDate" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="esp_Event_GetByEventTip_Result">
+          <Property Type="Int32" Name="EventID" Nullable="false" />
+          <Property Type="Int32" Name="LokacijaID" Nullable="false" />
+          <Property Type="String" Name="EventNaziv" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="LokacijaNaziv" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="DatumOdrzavanja" Nullable="false" Precision="23" />
+          <Property Type="Binary" Name="SlikaThumb" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="esp_Event_GetByID_Result">
+          <Property Type="Int32" Name="EventID" Nullable="false" />
+          <Property Type="String" Name="Naziv" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Opis" Nullable="false" MaxLength="3000" />
+          <Property Type="DateTime" Name="DatumKreiranja" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="DatumOdrzavanja" Nullable="false" Precision="23" />
+          <Property Type="Time" Name="VrijemePocetka" Nullable="true" />
+          <Property Type="Time" Name="VrijemeZavrsetka" Nullable="true" />
+          <Property Type="Double" Name="AverageRating" Nullable="false" />
+          <Property Type="Int32" Name="EventTipID" Nullable="false" />
+          <Property Type="Int32" Name="KreatorID" Nullable="false" />
+          <Property Type="Int32" Name="LokacijaID" Nullable="false" />
+          <Property Type="Int32" Name="OrganizacijaID" Nullable="true" />
+          <Property Type="Binary" Name="Slika" Nullable="true" />
+          <Property Type="Binary" Name="SlikaThumb" Nullable="true" />
+          <Property Type="String" Name="Status" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="esp_Event_GetComments_Result">
+          <Property Type="Int32" Name="EventID" Nullable="false" />
+          <Property Type="String" Name="Naziv" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="KorisnickoIme" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="EventRating" Nullable="true" />
+          <Property Type="String" Name="Comment" Nullable="true" MaxLength="3000" />
+          <Property Type="DateTime" Name="CommentDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="RatingDate" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="esp_Event_GetDetails_Result">
+          <Property Type="Int32" Name="EventID" Nullable="false" />
+          <Property Type="String" Name="Naziv" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Opis" Nullable="false" MaxLength="3000" />
+          <Property Type="String" Name="DatumKreiranja" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="DatumOdrzavanja" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="KorisnickoIme" Nullable="false" MaxLength="50" />
+          <Property Type="Double" Name="AverageRating" Nullable="false" />
+          <Property Type="String" Name="VrijemePocetka" Nullable="true" MaxLength="5" />
+          <Property Type="String" Name="VrijemeZavrsetka" Nullable="true" MaxLength="5" />
+          <Property Type="Binary" Name="SlikaThumb" Nullable="true" />
+          <Property Type="String" Name="Status" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="OrganizacijaID" Nullable="true" />
+          <Property Type="Int32" Name="LokacijaID" Nullable="false" />
+          <Property Type="String" Name="EventTip" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Organizacija" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Lokacija" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="esp_Event_GetEvents_Result">
+          <Property Type="Int32" Name="EventID" Nullable="false" />
+          <Property Type="String" Name="Naziv" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="DatumOdrzavanja" Nullable="false" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="esp_Event_OrderByDatum_Result">
+          <Property Type="Int32" Name="EventID" Nullable="false" />
+          <Property Type="String" Name="Naziv" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="DatumOdrzavanja" Nullable="false" Precision="23" />
+          <Property Type="Binary" Name="SlikaThumb" Nullable="true" />
+          <Property Type="String" Name="LokacijaNaziv" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="esp_Event_OrderByLokacija_Result">
+          <Property Type="Int32" Name="EventID" Nullable="false" />
+          <Property Type="String" Name="Naziv" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="DatumOdrzavanja" Nullable="false" Precision="23" />
+          <Property Type="Binary" Name="SlikaThumb" Nullable="true" />
+          <Property Type="String" Name="LokacijaNaziv" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="esp_Event_Top5ByGradMjesec_Result">
+          <Property Type="Int32" Name="EventID" Nullable="false" />
+          <Property Type="String" Name="Naziv" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="DatumOdrzavanja" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="Lokacija" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Grad" Nullable="false" MaxLength="50" />
+          <Property Type="Double" Name="AverageRating" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="esp_Events_SelectAll_Result">
+          <Property Type="Int32" Name="EventID" Nullable="false" />
+          <Property Type="String" Name="Naziv" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="DatumOdrzavanja" Nullable="false" Precision="23" />
+          <Property Type="String" Name="Naziv1" Nullable="false" MaxLength="50" />
+          <Property Type="Double" Name="AverageRating" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="esp_Grad_SelectAll_Result">
+          <Property Type="Int32" Name="GradID" Nullable="false" />
+          <Property Type="String" Name="Naziv" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="esp_Korisnik_GetByID_Result">
+          <Property Type="Int32" Name="KorisnikID" Nullable="false" />
+          <Property Type="String" Name="Ime" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Prezime" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="KorisnickoIme" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="LozinkaSalt" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="LozinkaHash" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="GradID" Nullable="false" />
+          <Property Type="Binary" Name="Slika" Nullable="true" />
+          <Property Type="Binary" Name="SlikaThumb" Nullable="true" />
+          <Property Type="Boolean" Name="Status" Nullable="false" />
+          <Property Type="String" Name="Telefon" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="esp_Korisnik_GetByKorisnickoIme_Result">
+          <Property Type="Int32" Name="KorisnikID" Nullable="false" />
+          <Property Type="String" Name="KorisnickoIme" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="LozinkaHash" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="LozinkaSalt" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="esp_Korisnik_GetByUsername_Result">
+          <Property Type="Int32" Name="KorisnikID" Nullable="false" />
+          <Property Type="String" Name="Ime" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Prezime" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="KorisnickoIme" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="LozinkaSalt" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="LozinkaHash" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="GradID" Nullable="false" />
+          <Property Type="Binary" Name="Slika" Nullable="true" />
+          <Property Type="Binary" Name="SlikaThumb" Nullable="true" />
+          <Property Type="Boolean" Name="Status" Nullable="false" />
+          <Property Type="String" Name="Telefon" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="esp_Korisnik_SelectAll_Result">
+          <Property Type="Int32" Name="KorisnikID" Nullable="false" />
+          <Property Type="String" Name="Ime" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Prezime" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="100" />
+          <Property Type="Boolean" Name="Status" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="esp_Korisnik_SelectByImePrezime_Result">
+          <Property Type="Int32" Name="KorisnikID" Nullable="false" />
+          <Property Type="String" Name="Ime" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Prezime" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="KorisnickoIme" Nullable="false" MaxLength="50" />
+          <Property Type="Boolean" Name="Status" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="esp_LokacijaTip_SelectAll_Result">
+          <Property Type="Int32" Name="LokacijaTipID" Nullable="false" />
+          <Property Type="String" Name="Naziv" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="esp_Lokacija_GetByID_Result">
+          <Property Type="Int32" Name="LokacijaID" Nullable="false" />
+          <Property Type="String" Name="Naziv" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Opis" Nullable="true" MaxLength="3000" />
+          <Property Type="Int32" Name="Kapacitet" Nullable="true" />
+          <Property Type="String" Name="Adresa" Nullable="false" MaxLength="50" />
+          <Property Type="Binary" Name="Slika" Nullable="true" />
+          <Property Type="Binary" Name="SlikaThumb" Nullable="true" />
+          <Property Type="Double" Name="AverageRating" Nullable="true" />
+          <Property Type="String" Name="LokacijaTip" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="GradNaziv" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="esp_Lokacija_GetComments_Result">
+          <Property Type="Int32" Name="LokacijaID" Nullable="false" />
+          <Property Type="Int32" Name="PosjetilacID" Nullable="false" />
+          <Property Type="Int32" Name="LocationRating" Nullable="true" />
+          <Property Type="String" Name="Comment" Nullable="true" MaxLength="3000" />
+          <Property Type="String" Name="LokacijaNaziv" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="KorisnickoIme" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="esp_Lokacija_GetFavoriteLokacijas_Result">
+          <Property Type="Int32" Name="LokacijaID" Nullable="false" />
+          <Property Type="String" Name="Naziv" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="LokacijaTipNaziv" Nullable="false" MaxLength="50" />
+          <Property Type="Binary" Name="SlikaThumb" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="esp_Lokacija_GetLokacijaList_Result">
+          <Property Type="Int32" Name="LokacijaID" Nullable="false" />
+          <Property Type="String" Name="Naziv" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="LokacijaTipNaziv" Nullable="false" MaxLength="50" />
+          <Property Type="Binary" Name="SlikaThumb" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="esp_Lokacija_GetTop5ByGrad_Result">
+          <Property Type="Int32" Name="LokacijaID" Nullable="false" />
+          <Property Type="String" Name="Naziv" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Adresa" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Tip" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Grad" Nullable="false" MaxLength="50" />
+          <Property Type="Double" Name="AverageRating" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="esp_Lokacija_SelectAll_Result">
+          <Property Type="Int32" Name="LokacijaID" Nullable="false" />
+          <Property Type="String" Name="Naziv" Nullable="false" MaxLength="50" />
+          <Property Type="Double" Name="AverageRating" Nullable="true" />
+          <Property Type="String" Name="Adresa" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Grad" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Tip" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="esp_Organizacija_GetByID_Result">
+          <Property Type="Int32" Name="OrganizacijaID" Nullable="false" />
+          <Property Type="String" Name="Naziv" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Opis" Nullable="true" MaxLength="3000" />
+          <Property Type="String" Name="Tip" Nullable="true" MaxLength="50" />
+          <Property Type="Binary" Name="SlikaLogo" Nullable="true" />
+          <Property Type="String" Name="GradNaziv" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="esp_Organizacija_GetComments_Result">
+          <Property Type="Int32" Name="OrganizacijaID" Nullable="false" />
+          <Property Type="Int32" Name="PosjetilacID" Nullable="false" />
+          <Property Type="String" Name="Comment" Nullable="true" MaxLength="3000" />
+          <Property Type="Int32" Name="LocationRating" Nullable="true" />
+          <Property Type="DateTime" Name="CommentDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="OrganizacijaNaziv" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="KorisnickoIme" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="esp_Organizacija_SelectAll_Result">
+          <Property Type="Int32" Name="OrganizacijaID" Nullable="false" />
+          <Property Type="String" Name="Naziv" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="esp_PosjetilacLokacija_GetByID_Result">
+          <Property Type="Int32" Name="PosjetilacID" Nullable="false" />
+          <Property Type="Int32" Name="LokacijaID" Nullable="false" />
+          <Property Type="Int32" Name="LocationRating" Nullable="true" />
+          <Property Type="DateTime" Name="RatingDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Comment" Nullable="true" MaxLength="3000" />
+          <Property Type="DateTime" Name="CommentDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="LokacijaNaziv" Nullable="false" MaxLength="50" />
+          <Property Type="Boolean" Name="IsFavorite" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="esp_PosjetilacOrganizacija_GetByID_Result">
+          <Property Type="Int32" Name="PosjetilacID" Nullable="false" />
+          <Property Type="Int32" Name="OrganizacijaID" Nullable="false" />
+          <Property Type="Int32" Name="LocationRating" Nullable="true" />
+          <Property Type="DateTime" Name="RatingDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Comment" Nullable="true" MaxLength="3000" />
+          <Property Type="DateTime" Name="CommentDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="OrganizacijaNaziv" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="esp_Posjetilac_GetByID_Result">
+          <Property Type="Int32" Name="PosjetilacID" Nullable="false" />
+          <Property Type="Int32" Name="BrojPosjecenihDogadjaja" Nullable="true" />
+          <Property Type="String" Name="Zanimanje" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="esp_Slika_GetByGallery_Result">
+          <Property Type="Int32" Name="SlikaID" Nullable="false" />
+          <Property Type="Binary" Name="Slika" Nullable="false" />
+          <Property Type="Binary" Name="SlikaThumb" Nullable="false" />
+          <Property Type="String" Name="Opis" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="esp_Uloga_SelectAll_Result">
+          <Property Type="Int32" Name="UlogaID" Nullable="false" />
+          <Property Type="String" Name="Naziv" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Opis" Nullable="true" MaxLength="300" />
+        </ComplexType>
+        <ComplexType Name="esp_Event_GetReport_Result">
+          <Property Type="Int32" Name="EventID" Nullable="false" />
+          <Property Type="String" Name="Naziv" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="DatumOdrzavanja" Nullable="true" />
+          <Property Type="String" Name="Status" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="MarkedAsToVisit" Nullable="true" />
+          <Property Type="Int32" Name="Comments" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Model2StoreContainer" CdmEntityContainer="LocalEventsEntities2">
+          <EntitySetMapping Name="AgeRanges">
+            <EntityTypeMapping TypeName="Model2.AgeRange">
+              <MappingFragment StoreEntitySet="AgeRange">
+                <ScalarProperty Name="AgeRangeID" ColumnName="AgeRangeID" />
+                <ScalarProperty Name="Range" ColumnName="Range" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Drzavas">
+            <EntityTypeMapping TypeName="Model2.Drzava">
+              <MappingFragment StoreEntitySet="Drzava">
+                <ScalarProperty Name="DrzavaID" ColumnName="DrzavaID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Events">
+            <EntityTypeMapping TypeName="Model2.Event">
+              <MappingFragment StoreEntitySet="Event">
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="KreatorID" ColumnName="KreatorID" />
+                <ScalarProperty Name="AverageRating" ColumnName="AverageRating" />
+                <ScalarProperty Name="DatumKreiranja" ColumnName="DatumKreiranja" />
+                <ScalarProperty Name="DatumOdrzavanja" ColumnName="DatumOdrzavanja" />
+                <ScalarProperty Name="VrijemePocetka" ColumnName="VrijemePocetka" />
+                <ScalarProperty Name="VrijemeZavrsetka" ColumnName="VrijemeZavrsetka" />
+                <ScalarProperty Name="Slika" ColumnName="Slika" />
+                <ScalarProperty Name="SlikaThumb" ColumnName="SlikaThumb" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="EventTipID" ColumnName="EventTipID" />
+                <ScalarProperty Name="OrganizacijaID" ColumnName="OrganizacijaID" />
+                <ScalarProperty Name="LokacijaID" ColumnName="LokacijaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EventGalleries">
+            <EntityTypeMapping TypeName="Model2.EventGallery">
+              <MappingFragment StoreEntitySet="EventGallery">
+                <ScalarProperty Name="EventGalleryID" ColumnName="EventGalleryID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="DatumKreiranja" ColumnName="DatumKreiranja" />
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EventTips">
+            <EntityTypeMapping TypeName="Model2.EventTip">
+              <MappingFragment StoreEntitySet="EventTip">
+                <ScalarProperty Name="EventTipID" ColumnName="EventTipID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EventToVisits">
+            <EntityTypeMapping TypeName="Model2.EventToVisit">
+              <MappingFragment StoreEntitySet="EventToVisit">
+                <ScalarProperty Name="PosjetilacID" ColumnName="PosjetilacID" />
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="Prisustvovao" ColumnName="Prisustvovao" />
+                <ScalarProperty Name="EventRating" ColumnName="EventRating" />
+                <ScalarProperty Name="RatingDate" ColumnName="RatingDate" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="CommentDate" ColumnName="CommentDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Grads">
+            <EntityTypeMapping TypeName="Model2.Grad">
+              <MappingFragment StoreEntitySet="Grad">
+                <ScalarProperty Name="GradID" ColumnName="GradID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="DrzavaID" ColumnName="DrzavaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Korisniks">
+            <EntityTypeMapping TypeName="Model2.Korisnik">
+              <MappingFragment StoreEntitySet="Korisnik">
+                <ScalarProperty Name="KorisnikID" ColumnName="KorisnikID" />
+                <ScalarProperty Name="Ime" ColumnName="Ime" />
+                <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="KorisnickoIme" ColumnName="KorisnickoIme" />
+                <ScalarProperty Name="LozinkaHash" ColumnName="LozinkaHash" />
+                <ScalarProperty Name="LozinkaSalt" ColumnName="LozinkaSalt" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Slika" ColumnName="Slika" />
+                <ScalarProperty Name="SlikaThumb" ColumnName="SlikaThumb" />
+                <ScalarProperty Name="GradID" ColumnName="GradID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KorisnikUlogas">
+            <EntityTypeMapping TypeName="Model2.KorisnikUloga">
+              <MappingFragment StoreEntitySet="KorisnikUloga">
+                <ScalarProperty Name="KorisnikUlogaID" ColumnName="KorisnikUlogaID" />
+                <ScalarProperty Name="KorisnikID" ColumnName="KorisnikID" />
+                <ScalarProperty Name="UlogaID" ColumnName="UlogaID" />
+                <ScalarProperty Name="DatumIzmjene" ColumnName="DatumIzmjene" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lokacijas">
+            <EntityTypeMapping TypeName="Model2.Lokacija">
+              <MappingFragment StoreEntitySet="Lokacija">
+                <ScalarProperty Name="LokacijaID" ColumnName="LokacijaID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="Kapacitet" ColumnName="Kapacitet" />
+                <ScalarProperty Name="Adresa" ColumnName="Adresa" />
+                <ScalarProperty Name="Slika" ColumnName="Slika" />
+                <ScalarProperty Name="SlikaThumb" ColumnName="SlikaThumb" />
+                <ScalarProperty Name="AverageRating" ColumnName="AverageRating" />
+                <ScalarProperty Name="GradID" ColumnName="GradID" />
+                <ScalarProperty Name="LokacijaTipID" ColumnName="LokacijaTipID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LokacijaTips">
+            <EntityTypeMapping TypeName="Model2.LokacijaTip">
+              <MappingFragment StoreEntitySet="LokacijaTip">
+                <ScalarProperty Name="LokacijaTipID" ColumnName="LokacijaTipID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Organizacijas">
+            <EntityTypeMapping TypeName="Model2.Organizacija">
+              <MappingFragment StoreEntitySet="Organizacija">
+                <ScalarProperty Name="OrganizacijaID" ColumnName="OrganizacijaID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="Tip" ColumnName="Tip" />
+                <ScalarProperty Name="SlikaLogo" ColumnName="SlikaLogo" />
+                <ScalarProperty Name="GradID" ColumnName="GradID" />
+                <ScalarProperty Name="AverageRating" ColumnName="AverageRating" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Posjetilacs">
+            <EntityTypeMapping TypeName="Model2.Posjetilac">
+              <MappingFragment StoreEntitySet="Posjetilac">
+                <ScalarProperty Name="PosjetilacID" ColumnName="PosjetilacID" />
+                <ScalarProperty Name="BrojPosjecenihDogadjaja" ColumnName="BrojPosjecenihDogadjaja" />
+                <ScalarProperty Name="Zanimanje" ColumnName="Zanimanje" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PosjetilacLokacijas">
+            <EntityTypeMapping TypeName="Model2.PosjetilacLokacija">
+              <MappingFragment StoreEntitySet="PosjetilacLokacija">
+                <ScalarProperty Name="PosjetilacID" ColumnName="PosjetilacID" />
+                <ScalarProperty Name="LokacijaID" ColumnName="LokacijaID" />
+                <ScalarProperty Name="LocationRating" ColumnName="LocationRating" />
+                <ScalarProperty Name="RatingDate" ColumnName="RatingDate" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="CommentDate" ColumnName="CommentDate" />
+                <ScalarProperty Name="IsFavorite" ColumnName="IsFavorite" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PosjetilacOrganizacijas">
+            <EntityTypeMapping TypeName="Model2.PosjetilacOrganizacija">
+              <MappingFragment StoreEntitySet="PosjetilacOrganizacija">
+                <ScalarProperty Name="PosjetilacID" ColumnName="PosjetilacID" />
+                <ScalarProperty Name="OrganizacijaID" ColumnName="OrganizacijaID" />
+                <ScalarProperty Name="LocationRating" ColumnName="LocationRating" />
+                <ScalarProperty Name="RatingDate" ColumnName="RatingDate" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="CommentDate" ColumnName="CommentDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Slikas">
+            <EntityTypeMapping TypeName="Model2.Slika">
+              <MappingFragment StoreEntitySet="Slika">
+                <ScalarProperty Name="SlikaID" ColumnName="SlikaID" />
+                <ScalarProperty Name="EventGalleryID" ColumnName="EventGalleryID" />
+                <ScalarProperty Name="Slika1" ColumnName="Slika" />
+                <ScalarProperty Name="SlikaThumb" ColumnName="SlikaThumb" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ulogas">
+            <EntityTypeMapping TypeName="Model2.Uloga">
+              <MappingFragment StoreEntitySet="Uloga">
+                <ScalarProperty Name="UlogaID" ColumnName="UlogaID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="EventAgeRange" TypeName="Model2.EventAgeRange" StoreEntitySet="EventAgeRange">
+            <EndProperty Name="AgeRange">
+              <ScalarProperty Name="AgeRangeID" ColumnName="AgeRangeID" />
+            </EndProperty>
+            <EndProperty Name="Event">
+              <ScalarProperty Name="EventID" ColumnName="EventID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="GetSlikaByID" FunctionName="Model2.Store.GetSlikaByID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model2.GetSlikaByID_Result">
+                <ScalarProperty Name="SlikaID" ColumnName="SlikaID" />
+                <ScalarProperty Name="EventGalleryID" ColumnName="EventGalleryID" />
+                <ScalarProperty Name="Slika" ColumnName="Slika" />
+                <ScalarProperty Name="SlikaThumb" ColumnName="SlikaThumb" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="esp_AgeRange_SelectAll" FunctionName="Model2.Store.esp_AgeRange_SelectAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model2.esp_AgeRange_SelectAll_Result">
+                <ScalarProperty Name="AgeRangeID" ColumnName="AgeRangeID" />
+                <ScalarProperty Name="Range" ColumnName="Range" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="esp_EventAgeRange_GetByEvent" FunctionName="Model2.Store.esp_EventAgeRange_GetByEvent">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model2.esp_EventAgeRange_GetByEvent_Result">
+                <ScalarProperty Name="AgeRangeID" ColumnName="AgeRangeID" />
+                <ScalarProperty Name="Range" ColumnName="Range" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="esp_EventAgeRange_Insert" FunctionName="Model2.Store.esp_EventAgeRange_Insert" />
+          <FunctionImportMapping FunctionImportName="esp_EventGallery_GetByEvent" FunctionName="Model2.Store.esp_EventGallery_GetByEvent">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model2.esp_EventGallery_GetByEvent_Result">
+                <ScalarProperty Name="EventGalleryID" ColumnName="EventGalleryID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="DatumKreiranja" ColumnName="DatumKreiranja" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="esp_EventGallery_GetByID" FunctionName="Model2.Store.esp_EventGallery_GetByID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model2.esp_EventGallery_GetByID_Result">
+                <ScalarProperty Name="EventGalleryID" ColumnName="EventGalleryID" />
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="DatumKreiranja" ColumnName="DatumKreiranja" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="esp_EventGallery_Insert" FunctionName="Model2.Store.esp_EventGallery_Insert" />
+          <FunctionImportMapping FunctionImportName="esp_EventGallery_Update" FunctionName="Model2.Store.esp_EventGallery_Update" />
+          <FunctionImportMapping FunctionImportName="esp_EventTip_SelectAll" FunctionName="Model2.Store.esp_EventTip_SelectAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model2.esp_EventTip_SelectAll_Result">
+                <ScalarProperty Name="EventTipID" ColumnName="EventTipID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="esp_EventToVisit_GetByPosjetilacID" FunctionName="Model2.Store.esp_EventToVisit_GetByPosjetilacID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model2.esp_EventToVisit_GetByPosjetilacID_Result">
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="EventNaziv" ColumnName="EventNaziv" />
+                <ScalarProperty Name="SlikaThumb" ColumnName="SlikaThumb" />
+                <ScalarProperty Name="DatumOdrzavanja" ColumnName="DatumOdrzavanja" />
+                <ScalarProperty Name="LokacijaNaziv" ColumnName="LokacijaNaziv" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="esp_EventToVisit_GetDetails" FunctionName="Model2.Store.esp_EventToVisit_GetDetails">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model2.esp_EventToVisit_GetDetails_Result">
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="PosjetilacID" ColumnName="PosjetilacID" />
+                <ScalarProperty Name="Prisustvovao" ColumnName="Prisustvovao" />
+                <ScalarProperty Name="EventRating" ColumnName="EventRating" />
+                <ScalarProperty Name="RatingDate" ColumnName="RatingDate" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="CommentDate" ColumnName="CommentDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="esp_EventToVisit_Remove" FunctionName="Model2.Store.esp_EventToVisit_Remove" />
+          <FunctionImportMapping FunctionImportName="esp_EventToVisit_UpdateAll" FunctionName="Model2.Store.esp_EventToVisit_UpdateAll" />
+          <FunctionImportMapping FunctionImportName="esp_EventToVisit_UpdateComment" FunctionName="Model2.Store.esp_EventToVisit_UpdateComment" />
+          <FunctionImportMapping FunctionImportName="esp_EventToVisit_UpdateRating" FunctionName="Model2.Store.esp_EventToVisit_UpdateRating" />
+          <FunctionImportMapping FunctionImportName="esp_Event_GetByEventTip" FunctionName="Model2.Store.esp_Event_GetByEventTip">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model2.esp_Event_GetByEventTip_Result">
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="LokacijaID" ColumnName="LokacijaID" />
+                <ScalarProperty Name="EventNaziv" ColumnName="EventNaziv" />
+                <ScalarProperty Name="LokacijaNaziv" ColumnName="LokacijaNaziv" />
+                <ScalarProperty Name="DatumOdrzavanja" ColumnName="DatumOdrzavanja" />
+                <ScalarProperty Name="SlikaThumb" ColumnName="SlikaThumb" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="esp_Event_GetByID" FunctionName="Model2.Store.esp_Event_GetByID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model2.esp_Event_GetByID_Result">
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="DatumKreiranja" ColumnName="DatumKreiranja" />
+                <ScalarProperty Name="DatumOdrzavanja" ColumnName="DatumOdrzavanja" />
+                <ScalarProperty Name="VrijemePocetka" ColumnName="VrijemePocetka" />
+                <ScalarProperty Name="VrijemeZavrsetka" ColumnName="VrijemeZavrsetka" />
+                <ScalarProperty Name="AverageRating" ColumnName="AverageRating" />
+                <ScalarProperty Name="EventTipID" ColumnName="EventTipID" />
+                <ScalarProperty Name="KreatorID" ColumnName="KreatorID" />
+                <ScalarProperty Name="LokacijaID" ColumnName="LokacijaID" />
+                <ScalarProperty Name="OrganizacijaID" ColumnName="OrganizacijaID" />
+                <ScalarProperty Name="Slika" ColumnName="Slika" />
+                <ScalarProperty Name="SlikaThumb" ColumnName="SlikaThumb" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="esp_Event_GetComments" FunctionName="Model2.Store.esp_Event_GetComments">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model2.esp_Event_GetComments_Result">
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="KorisnickoIme" ColumnName="KorisnickoIme" />
+                <ScalarProperty Name="EventRating" ColumnName="EventRating" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="CommentDate" ColumnName="CommentDate" />
+                <ScalarProperty Name="RatingDate" ColumnName="RatingDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="esp_Event_GetDetails" FunctionName="Model2.Store.esp_Event_GetDetails">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model2.esp_Event_GetDetails_Result">
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="DatumKreiranja" ColumnName="DatumKreiranja" />
+                <ScalarProperty Name="DatumOdrzavanja" ColumnName="DatumOdrzavanja" />
+                <ScalarProperty Name="KorisnickoIme" ColumnName="KorisnickoIme" />
+                <ScalarProperty Name="AverageRating" ColumnName="AverageRating" />
+                <ScalarProperty Name="VrijemePocetka" ColumnName="VrijemePocetka" />
+                <ScalarProperty Name="VrijemeZavrsetka" ColumnName="VrijemeZavrsetka" />
+                <ScalarProperty Name="SlikaThumb" ColumnName="SlikaThumb" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="OrganizacijaID" ColumnName="OrganizacijaID" />
+                <ScalarProperty Name="LokacijaID" ColumnName="LokacijaID" />
+                <ScalarProperty Name="EventTip" ColumnName="EventTip" />
+                <ScalarProperty Name="Organizacija" ColumnName="Organizacija" />
+                <ScalarProperty Name="Lokacija" ColumnName="Lokacija" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="esp_Event_GetEvents" FunctionName="Model2.Store.esp_Event_GetEvents">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model2.esp_Event_GetEvents_Result">
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="DatumOdrzavanja" ColumnName="DatumOdrzavanja" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="esp_Event_Insert" FunctionName="Model2.Store.esp_Event_Insert" />
+          <FunctionImportMapping FunctionImportName="esp_Event_OrderByDatum" FunctionName="Model2.Store.esp_Event_OrderByDatum">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model2.esp_Event_OrderByDatum_Result">
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="DatumOdrzavanja" ColumnName="DatumOdrzavanja" />
+                <ScalarProperty Name="SlikaThumb" ColumnName="SlikaThumb" />
+                <ScalarProperty Name="LokacijaNaziv" ColumnName="LokacijaNaziv" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="esp_Event_OrderByLokacija" FunctionName="Model2.Store.esp_Event_OrderByLokacija">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model2.esp_Event_OrderByLokacija_Result">
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="DatumOdrzavanja" ColumnName="DatumOdrzavanja" />
+                <ScalarProperty Name="SlikaThumb" ColumnName="SlikaThumb" />
+                <ScalarProperty Name="LokacijaNaziv" ColumnName="LokacijaNaziv" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="esp_Event_ToVisit" FunctionName="Model2.Store.esp_Event_ToVisit" />
+          <FunctionImportMapping FunctionImportName="esp_Event_Top5ByGradMjesec" FunctionName="Model2.Store.esp_Event_Top5ByGradMjesec">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model2.esp_Event_Top5ByGradMjesec_Result">
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="DatumOdrzavanja" ColumnName="DatumOdrzavanja" />
+                <ScalarProperty Name="Lokacija" ColumnName="Lokacija" />
+                <ScalarProperty Name="Grad" ColumnName="Grad" />
+                <ScalarProperty Name="AverageRating" ColumnName="AverageRating" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="esp_Event_Update" FunctionName="Model2.Store.esp_Event_Update" />
+          <FunctionImportMapping FunctionImportName="esp_Event_UpdateStatus" FunctionName="Model2.Store.esp_Event_UpdateStatus" />
+          <FunctionImportMapping FunctionImportName="esp_Events_Insert" FunctionName="Model2.Store.esp_Events_Insert" />
+          <FunctionImportMapping FunctionImportName="esp_Events_SelectAll" FunctionName="Model2.Store.esp_Events_SelectAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model2.esp_Events_SelectAll_Result">
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="DatumOdrzavanja" ColumnName="DatumOdrzavanja" />
+                <ScalarProperty Name="Naziv1" ColumnName="Naziv1" />
+                <ScalarProperty Name="AverageRating" ColumnName="AverageRating" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="esp_Grad_SelectAll" FunctionName="Model2.Store.esp_Grad_SelectAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model2.esp_Grad_SelectAll_Result">
+                <ScalarProperty Name="GradID" ColumnName="GradID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="esp_Korisnik_GetByID" FunctionName="Model2.Store.esp_Korisnik_GetByID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model2.esp_Korisnik_GetByID_Result">
+                <ScalarProperty Name="KorisnikID" ColumnName="KorisnikID" />
+                <ScalarProperty Name="Ime" ColumnName="Ime" />
+                <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="KorisnickoIme" ColumnName="KorisnickoIme" />
+                <ScalarProperty Name="LozinkaSalt" ColumnName="LozinkaSalt" />
+                <ScalarProperty Name="LozinkaHash" ColumnName="LozinkaHash" />
+                <ScalarProperty Name="GradID" ColumnName="GradID" />
+                <ScalarProperty Name="Slika" ColumnName="Slika" />
+                <ScalarProperty Name="SlikaThumb" ColumnName="SlikaThumb" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="esp_Korisnik_GetByKorisnickoIme" FunctionName="Model2.Store.esp_Korisnik_GetByKorisnickoIme">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model2.esp_Korisnik_GetByKorisnickoIme_Result">
+                <ScalarProperty Name="KorisnikID" ColumnName="KorisnikID" />
+                <ScalarProperty Name="KorisnickoIme" ColumnName="KorisnickoIme" />
+                <ScalarProperty Name="LozinkaHash" ColumnName="LozinkaHash" />
+                <ScalarProperty Name="LozinkaSalt" ColumnName="LozinkaSalt" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="esp_Korisnik_GetByUsername" FunctionName="Model2.Store.esp_Korisnik_GetByUsername">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model2.esp_Korisnik_GetByUsername_Result">
+                <ScalarProperty Name="KorisnikID" ColumnName="KorisnikID" />
+                <ScalarProperty Name="Ime" ColumnName="Ime" />
+                <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="KorisnickoIme" ColumnName="KorisnickoIme" />
+                <ScalarProperty Name="LozinkaSalt" ColumnName="LozinkaSalt" />
+                <ScalarProperty Name="LozinkaHash" ColumnName="LozinkaHash" />
+                <ScalarProperty Name="GradID" ColumnName="GradID" />
+                <ScalarProperty Name="Slika" ColumnName="Slika" />
+                <ScalarProperty Name="SlikaThumb" ColumnName="SlikaThumb" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="esp_Korisnik_Insert" FunctionName="Model2.Store.esp_Korisnik_Insert" />
+          <FunctionImportMapping FunctionImportName="esp_Korisnik_SelectAll" FunctionName="Model2.Store.esp_Korisnik_SelectAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model2.esp_Korisnik_SelectAll_Result">
+                <ScalarProperty Name="KorisnikID" ColumnName="KorisnikID" />
+                <ScalarProperty Name="Ime" ColumnName="Ime" />
+                <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="esp_Korisnik_SelectByImePrezime" FunctionName="Model2.Store.esp_Korisnik_SelectByImePrezime">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model2.esp_Korisnik_SelectByImePrezime_Result">
+                <ScalarProperty Name="KorisnikID" ColumnName="KorisnikID" />
+                <ScalarProperty Name="Ime" ColumnName="Ime" />
+                <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="KorisnickoIme" ColumnName="KorisnickoIme" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="esp_Korisnik_Update" FunctionName="Model2.Store.esp_Korisnik_Update" />
+          <FunctionImportMapping FunctionImportName="esp_LokacijaTip_SelectAll" FunctionName="Model2.Store.esp_LokacijaTip_SelectAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model2.esp_LokacijaTip_SelectAll_Result">
+                <ScalarProperty Name="LokacijaTipID" ColumnName="LokacijaTipID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="esp_Lokacija_GetByID" FunctionName="Model2.Store.esp_Lokacija_GetByID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model2.esp_Lokacija_GetByID_Result">
+                <ScalarProperty Name="LokacijaID" ColumnName="LokacijaID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="Kapacitet" ColumnName="Kapacitet" />
+                <ScalarProperty Name="Adresa" ColumnName="Adresa" />
+                <ScalarProperty Name="Slika" ColumnName="Slika" />
+                <ScalarProperty Name="SlikaThumb" ColumnName="SlikaThumb" />
+                <ScalarProperty Name="AverageRating" ColumnName="AverageRating" />
+                <ScalarProperty Name="LokacijaTip" ColumnName="LokacijaTip" />
+                <ScalarProperty Name="GradNaziv" ColumnName="GradNaziv" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="esp_Lokacija_GetComments" FunctionName="Model2.Store.esp_Lokacija_GetComments">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model2.esp_Lokacija_GetComments_Result">
+                <ScalarProperty Name="LokacijaID" ColumnName="LokacijaID" />
+                <ScalarProperty Name="PosjetilacID" ColumnName="PosjetilacID" />
+                <ScalarProperty Name="LocationRating" ColumnName="LocationRating" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="LokacijaNaziv" ColumnName="LokacijaNaziv" />
+                <ScalarProperty Name="KorisnickoIme" ColumnName="KorisnickoIme" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="esp_Lokacija_GetFavoriteLokacijas" FunctionName="Model2.Store.esp_Lokacija_GetFavoriteLokacijas">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model2.esp_Lokacija_GetFavoriteLokacijas_Result">
+                <ScalarProperty Name="LokacijaID" ColumnName="LokacijaID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="LokacijaTipNaziv" ColumnName="LokacijaTipNaziv" />
+                <ScalarProperty Name="SlikaThumb" ColumnName="SlikaThumb" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="esp_Lokacija_GetLokacijaList" FunctionName="Model2.Store.esp_Lokacija_GetLokacijaList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model2.esp_Lokacija_GetLokacijaList_Result">
+                <ScalarProperty Name="LokacijaID" ColumnName="LokacijaID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="LokacijaTipNaziv" ColumnName="LokacijaTipNaziv" />
+                <ScalarProperty Name="SlikaThumb" ColumnName="SlikaThumb" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="esp_Lokacija_GetTop5ByGrad" FunctionName="Model2.Store.esp_Lokacija_GetTop5ByGrad">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model2.esp_Lokacija_GetTop5ByGrad_Result">
+                <ScalarProperty Name="LokacijaID" ColumnName="LokacijaID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="Adresa" ColumnName="Adresa" />
+                <ScalarProperty Name="Tip" ColumnName="Tip" />
+                <ScalarProperty Name="Grad" ColumnName="Grad" />
+                <ScalarProperty Name="AverageRating" ColumnName="AverageRating" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="esp_Lokacija_Input" FunctionName="Model2.Store.esp_Lokacija_Input" />
+          <FunctionImportMapping FunctionImportName="esp_Lokacija_SelectAll" FunctionName="Model2.Store.esp_Lokacija_SelectAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model2.esp_Lokacija_SelectAll_Result">
+                <ScalarProperty Name="LokacijaID" ColumnName="LokacijaID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="AverageRating" ColumnName="AverageRating" />
+                <ScalarProperty Name="Adresa" ColumnName="Adresa" />
+                <ScalarProperty Name="Grad" ColumnName="Grad" />
+                <ScalarProperty Name="Tip" ColumnName="Tip" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="esp_Lokacija_Update" FunctionName="Model2.Store.esp_Lokacija_Update" />
+          <FunctionImportMapping FunctionImportName="esp_Organizacija_GetByID" FunctionName="Model2.Store.esp_Organizacija_GetByID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model2.esp_Organizacija_GetByID_Result">
+                <ScalarProperty Name="OrganizacijaID" ColumnName="OrganizacijaID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="Tip" ColumnName="Tip" />
+                <ScalarProperty Name="SlikaLogo" ColumnName="SlikaLogo" />
+                <ScalarProperty Name="GradNaziv" ColumnName="GradNaziv" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="esp_Organizacija_GetComments" FunctionName="Model2.Store.esp_Organizacija_GetComments">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model2.esp_Organizacija_GetComments_Result">
+                <ScalarProperty Name="OrganizacijaID" ColumnName="OrganizacijaID" />
+                <ScalarProperty Name="PosjetilacID" ColumnName="PosjetilacID" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="LocationRating" ColumnName="LocationRating" />
+                <ScalarProperty Name="CommentDate" ColumnName="CommentDate" />
+                <ScalarProperty Name="OrganizacijaNaziv" ColumnName="OrganizacijaNaziv" />
+                <ScalarProperty Name="KorisnickoIme" ColumnName="KorisnickoIme" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="esp_Organizacija_Insert" FunctionName="Model2.Store.esp_Organizacija_Insert" />
+          <FunctionImportMapping FunctionImportName="esp_Organizacija_SelectAll" FunctionName="Model2.Store.esp_Organizacija_SelectAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model2.esp_Organizacija_SelectAll_Result">
+                <ScalarProperty Name="OrganizacijaID" ColumnName="OrganizacijaID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="esp_Organizacija_Update" FunctionName="Model2.Store.esp_Organizacija_Update" />
+          <FunctionImportMapping FunctionImportName="esp_PosjetilacLokacija_GetByID" FunctionName="Model2.Store.esp_PosjetilacLokacija_GetByID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model2.esp_PosjetilacLokacija_GetByID_Result">
+                <ScalarProperty Name="PosjetilacID" ColumnName="PosjetilacID" />
+                <ScalarProperty Name="LokacijaID" ColumnName="LokacijaID" />
+                <ScalarProperty Name="LocationRating" ColumnName="LocationRating" />
+                <ScalarProperty Name="RatingDate" ColumnName="RatingDate" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="CommentDate" ColumnName="CommentDate" />
+                <ScalarProperty Name="LokacijaNaziv" ColumnName="LokacijaNaziv" />
+                <ScalarProperty Name="IsFavorite" ColumnName="IsFavorite" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="esp_PosjetilacLokacija_Insert" FunctionName="Model2.Store.esp_PosjetilacLokacija_Insert" />
+          <FunctionImportMapping FunctionImportName="esp_PosjetilacLokacija_UpdateAll" FunctionName="Model2.Store.esp_PosjetilacLokacija_UpdateAll" />
+          <FunctionImportMapping FunctionImportName="esp_PosjetilacLokacija_UpdateComment" FunctionName="Model2.Store.esp_PosjetilacLokacija_UpdateComment" />
+          <FunctionImportMapping FunctionImportName="esp_PosjetilacLokacija_UpdateFavoriteStatus" FunctionName="Model2.Store.esp_PosjetilacLokacija_UpdateFavoriteStatus" />
+          <FunctionImportMapping FunctionImportName="esp_PosjetilacLokacija_UpdateRating" FunctionName="Model2.Store.esp_PosjetilacLokacija_UpdateRating" />
+          <FunctionImportMapping FunctionImportName="esp_PosjetilacOrganizacija_GetByID" FunctionName="Model2.Store.esp_PosjetilacOrganizacija_GetByID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model2.esp_PosjetilacOrganizacija_GetByID_Result">
+                <ScalarProperty Name="PosjetilacID" ColumnName="PosjetilacID" />
+                <ScalarProperty Name="OrganizacijaID" ColumnName="OrganizacijaID" />
+                <ScalarProperty Name="LocationRating" ColumnName="LocationRating" />
+                <ScalarProperty Name="RatingDate" ColumnName="RatingDate" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="CommentDate" ColumnName="CommentDate" />
+                <ScalarProperty Name="OrganizacijaNaziv" ColumnName="OrganizacijaNaziv" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="esp_PosjetilacOrganizacija_Insert" FunctionName="Model2.Store.esp_PosjetilacOrganizacija_Insert" />
+          <FunctionImportMapping FunctionImportName="esp_PosjetilacOrganizacija_UpdateAll" FunctionName="Model2.Store.esp_PosjetilacOrganizacija_UpdateAll" />
+          <FunctionImportMapping FunctionImportName="esp_PosjetilacOrganizacija_UpdateComment" FunctionName="Model2.Store.esp_PosjetilacOrganizacija_UpdateComment" />
+          <FunctionImportMapping FunctionImportName="esp_PosjetilacOrganizacija_UpdateRating" FunctionName="Model2.Store.esp_PosjetilacOrganizacija_UpdateRating" />
+          <FunctionImportMapping FunctionImportName="esp_Posjetilac_GetByID" FunctionName="Model2.Store.esp_Posjetilac_GetByID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model2.esp_Posjetilac_GetByID_Result">
+                <ScalarProperty Name="PosjetilacID" ColumnName="PosjetilacID" />
+                <ScalarProperty Name="BrojPosjecenihDogadjaja" ColumnName="BrojPosjecenihDogadjaja" />
+                <ScalarProperty Name="Zanimanje" ColumnName="Zanimanje" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="esp_Slika_GetByGallery" FunctionName="Model2.Store.esp_Slika_GetByGallery">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model2.esp_Slika_GetByGallery_Result">
+                <ScalarProperty Name="SlikaID" ColumnName="SlikaID" />
+                <ScalarProperty Name="Slika" ColumnName="Slika" />
+                <ScalarProperty Name="SlikaThumb" ColumnName="SlikaThumb" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="esp_Slika_Insert" FunctionName="Model2.Store.esp_Slika_Insert" />
+          <FunctionImportMapping FunctionImportName="esp_Slika_Update" FunctionName="Model2.Store.esp_Slika_Update" />
+          <FunctionImportMapping FunctionImportName="esp_Uloga_SelectAll" FunctionName="Model2.Store.esp_Uloga_SelectAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model2.esp_Uloga_SelectAll_Result">
+                <ScalarProperty Name="UlogaID" ColumnName="UlogaID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="esp_Event_GetReport" FunctionName="Model2.Store.esp_Event_GetReport">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model2.esp_Event_GetReport_Result">
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="DatumOdrzavanja" ColumnName="DatumOdrzavanja" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="MarkedAsToVisit" ColumnName="MarkedAsToVisit" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

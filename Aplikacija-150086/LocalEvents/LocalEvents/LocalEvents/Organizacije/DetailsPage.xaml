@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LocalEvents.Organizacije.DetailsPage">
+    <ContentPage.Content>
+        <Grid VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="4*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"></ColumnDefinition>
+                <ColumnDefinition Width="6*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+
+            <Label x:Name="NazivLabel" Grid.Column="0" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Large"></Label>
+            <Image x:Name="SlikaLogo" Grid.Column="1" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center"></Image>
+
+
+            <Label x:Name="TipLabel" Grid.Column="0" Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"></Label>
+            <Label x:Name="tip" Grid.Column="1" Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center"></Label>
+
+            <Label x:Name="GradLabel" Grid.Column="0" Grid.Row="2" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"></Label>
+            <Label x:Name="grad" Grid.Column="1" Grid.Row="2" VerticalOptions="Center" HorizontalOptions="Center"></Label>
+
+            <Label x:Name="OpisLabel" Grid.Column="0" Grid.Row="3" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"></Label>
+            <Label x:Name="opis" Grid.Column="1" Grid.Row="3" VerticalOptions="Center" HorizontalOptions="Center"></Label>
+
+            <Label x:Name="opcijeLabel" Grid.Column="0" Grid.Row="4" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"></Label>
+            <StackLayout Grid.Column="1" Grid.Row="4" >
+                <Button x:Name="rateBtn" VerticalOptions="Center" HorizontalOptions="Center" Clicked="rateBtn_Clicked"></Button>
+                <Button x:Name="commentSectionBtn" Grid.Column="1" Grid.Row="4" VerticalOptions="Center" HorizontalOptions="Center" Clicked="commentSectionBtn_Clicked"></Button>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

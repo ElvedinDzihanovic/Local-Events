@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:LocalEvents.Converters"
+             x:Class="LocalEvents.Events.DetailsPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:ImageConverter x:Key="imgConv"></local:ImageConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+        <Grid VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+
+                </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"></ColumnDefinition>
+                <ColumnDefinition Width="6*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <!---->
+            <Label x:Name="nazivLabel" Grid.Column="0" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center" FontSize="Large" FontAttributes="Bold"></Label>
+            <Image x:Name="eventImage" Grid.Column="1" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center"></Image>
+            <!---->
+            <Label x:Name="lokacijaLabel" Grid.Column="1" Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center"></Label>
+            <Label x:Name="lokacija" Grid.Column="0" Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"></Label>
+            <!---->
+            <Label x:Name="datumLabel" Grid.Column="0" Grid.Row="2" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"></Label>
+            <Label x:Name="datum" Grid.Column="1" Grid.Row="2" VerticalOptions="Center" HorizontalOptions="Center" ></Label>
+            <!---->
+            <Label x:Name="ageRangeLabel"  Grid.Column="0" Grid.Row="3" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"></Label>
+            <ListView x:Name="ageRangeListView" Grid.Column="1" Grid.Row="3" VerticalOptions="Center" HorizontalOptions="Center">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                       <ViewCell>
+                            <StackLayout>
+                                <Label Text="{Binding Range}" TextColor="Black" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"></Label>
+                            </StackLayout> 
+                       </ViewCell>
+                    </DataTemplate>
+                    </ListView.ItemTemplate>
+            </ListView>
+            <!---->
+            <Label x:Name="tipLabel" Grid.Column="0" Grid.Row="4" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"></Label>
+            <Label x:Name="tip" Grid.Column="1" Grid.Row="4" VerticalOptions="Center" HorizontalOptions="Center"></Label>
+            <!---->
+            <Label x:Name="opisLabel" Grid.Column="1" Grid.Row="5" VerticalOptions="Center" HorizontalOptions="Center"></Label>
+            <Label x:Name="opis" Grid.Column="0" Grid.Row="5" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"></Label>
+            <!---->
+            <Label x:Name="statusLabel" TextColor="Red" Grid.Column="1" Grid.Row="6" VerticalOptions="Center" HorizontalOptions="Center"></Label>
+            <Label x:Name="status" Grid.Column="0" Grid.Row="6" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"></Label>
+            
+            <Button x:Name="organizationLabel" Grid.Column="1" Grid.Row="7" VerticalOptions="Center" HorizontalOptions="Center" Clicked="organizationLabel_Clicked"></Button>
+            <Label x:Name="organization" Grid.Column="0" Grid.Row="7" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"></Label>
+            
+            <Label x:Name="buttonsLabel" Grid.Column="0" Grid.Row="8" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"></Label>
+            <StackLayout Grid.Column="1" Grid.Row="8" VerticalOptions="Center" HorizontalOptions="Center">
+                <Button x:Name="toVisitBtn" HeightRequest="40" Clicked="toVisitBtn_Clicked" BackgroundColor="White" BorderWidth="1.5" BorderColor="Black"  VerticalOptions="Center" HorizontalOptions="Center"></Button>
+                <Button x:Name="galleriesBtn" HeightRequest="40" Clicked="galleriesBtn_Clicked" VerticalOptions="Center"  BackgroundColor="White" BorderWidth="1.5" BorderColor="Black" HorizontalOptions="Center"></Button>
+            </StackLayout>
+        </Grid>
+            <Label x:Name="title2" HeightRequest="50"  FontAttributes="Bold"></Label>
+            <Label x:Name="title3" Text="Similarily Rated:" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold"></Label>
+            
+            <ListView x:Name="similarEventsListVies" VerticalOptions="Center" HorizontalOptions="Start">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                       <ViewCell>
+            <Grid VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+                           <Image x:Name="image" Grid.Column="0"
+                                       Source="{Binding SlikaThumb, Converter={StaticResource imgConv}}" Margin="5" HorizontalOptions="Center" VerticalOptions="Center"></Image>
+                            <StackLayout Grid.Column="1"  VerticalOptions="Center" HorizontalOptions="Center">
+                                <Label Text="{Binding Naziv}" TextColor="Black" FontAttributes="Bold"></Label>
+                                <Label Text="{Binding DatumOdrzavanja, StringFormat='{0:MMMM dd, yyyy}'}" TextColor="Black"></Label>
+                            </StackLayout> 
+                               </Grid>
+                       </ViewCell>
+                    </DataTemplate>
+                    </ListView.ItemTemplate>
+            </ListView>
+        
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

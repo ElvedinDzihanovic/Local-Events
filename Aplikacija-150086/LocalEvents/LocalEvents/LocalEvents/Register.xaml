@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LocalEvents.Register">
+
+    <ContentPage.Content>
+        <!--mozda ovo ne treba?-->
+        <StackLayout Margin="10" VerticalOptions="CenterAndExpand">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Text="Registracija @ Local Events" FontSize="25" HorizontalTextAlignment="Center" Grid.ColumnSpan="2"></Label>
+
+                <Label Text="Ime:" FontSize="18" Grid.Row="1" VerticalTextAlignment="Center"></Label>
+                <Entry x:Name="imeInput" Grid.Row="1" Grid.Column="1"></Entry>
+
+                <Label Text="Prezime:" FontSize="18" Grid.Row="2" VerticalTextAlignment="Center"></Label>
+                <Entry x:Name="prezimeInput" Grid.Row="2" Grid.Column="1"></Entry>
+
+                <Label Text="Email:" FontSize="18" Grid.Row="3" VerticalTextAlignment="Center"></Label>
+                <Entry x:Name="emailInput" Grid.Row="3" Grid.Column="1"></Entry>
+
+
+                <Label Text="Grad:" FontSize="18" Grid.Row="4" VerticalTextAlignment="Center"></Label>
+                <Picker x:Name="gradPicker" ItemDisplayBinding="{Binding Naziv}" Grid.Row="4" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="FillAndExpand"></Picker>
+
+                <Label Text="Username:" FontSize="18" Grid.Row="5" VerticalTextAlignment="Center"></Label>
+                <Entry x:Name="usernameInput" Grid.Row="5" Grid.Column="1"></Entry>
+
+                <Label Text="Password:" FontSize="18" Grid.Row="6" VerticalTextAlignment="Center"></Label>
+                <Entry x:Name="passwordInput" IsPassword="True" Grid.Row="6" Grid.Column="1"></Entry>
+
+                <Label Text="Zanimanje:" FontSize="18" Grid.Row="7" VerticalTextAlignment="Center"></Label>
+                <Entry x:Name="zanimanjeInput" Grid.Row="7" Grid.Column="1"></Entry>
+
+                <Button x:Name="registracijaBtn" Text="Submit" Grid.Row="8" Grid.Column="1" Clicked="registracijaBtn_Clicked"></Button>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
